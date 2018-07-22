@@ -1,0 +1,23 @@
+{
+  "name": "singleuseronline",
+  "version": "0.1.0",
+  "dependencies": {
+    "async": "^1.5.2",
+    "google-protobuf": "^3.0.0",
+    "grpc": "^1.13.0",
+    "grpc-tools": "^1.6.6",
+    "lodash": "^4.6.1",
+    "minimist": "^1.2.0",
+    "mysql": "^2.16.0",
+    "node-pre-gyp": "^0.10.3",
+    "socket.io": "^2.1.1"
+  },
+  "description": "single user online",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "castlebai",
+  "license": "ISC"
+}
