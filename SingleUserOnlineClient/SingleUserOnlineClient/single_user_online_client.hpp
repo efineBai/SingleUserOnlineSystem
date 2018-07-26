@@ -23,6 +23,7 @@
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
 #include "single_user_online.grpc.pb.h"
+#include "login_status_callback.hpp"
 
 
 using grpc::Channel;
@@ -35,6 +36,7 @@ using singleuseronline::SingleUserOnline;
 using singleuseronline::LoginInfo;
 using singleuseronline::ResultInfo;
 using std::string;
+using UserLogin::LoginStatusCallback;
 
 /*
  * 创建并封装gRPC的接口
@@ -47,11 +49,21 @@ public:
 
     }
 
-    bool SignUp(string userName, string pwd);
-
-
+    /*
+     * 用来注册新用户
+     */
+    bool SignUp(string userName, string pwd, std::shared_ptr<LoginStatusCallback> & callback);
+    /*
+     * 用来保成登录状态一直有效
+     */
+    bool keepAliveStream(string userName, string pwd, std::shared_ptr<LoginStatusCallback> & callback);
+    
+    bool logout();
+    
+ 
 private:
     std::unique_ptr<SingleUserOnline::Stub> stub_;
+    std::shared_ptr<ClientReaderWriter<LoginInfo, LoginInfo> currentStream;
 
 
 };

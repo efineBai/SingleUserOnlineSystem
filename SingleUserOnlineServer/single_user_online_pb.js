@@ -63,7 +63,8 @@ proto.singleuseronline.LoginInfo.toObject = function(includeInstance, msg) {
     userid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     passwordencoded: jspb.Message.getFieldWithDefault(msg, 2, ""),
     timestamp: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    deviceid: jspb.Message.getFieldWithDefault(msg, 4, "")
+    deviceid: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    status: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -115,6 +116,10 @@ proto.singleuseronline.LoginInfo.deserializeBinaryFromReader = function(msg, rea
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setDeviceid(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setStatus(value);
       break;
     default:
       reader.skipField();
@@ -170,6 +175,13 @@ proto.singleuseronline.LoginInfo.serializeBinaryToWriter = function(message, wri
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getStatus();
+  if (f !== 0) {
+    writer.writeInt32(
+      5,
       f
     );
   }
@@ -233,6 +245,21 @@ proto.singleuseronline.LoginInfo.prototype.getDeviceid = function() {
 /** @param {string} value */
 proto.singleuseronline.LoginInfo.prototype.setDeviceid = function(value) {
   jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional int32 status = 5;
+ * @return {number}
+ */
+proto.singleuseronline.LoginInfo.prototype.getStatus = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/** @param {number} value */
+proto.singleuseronline.LoginInfo.prototype.setStatus = function(value) {
+  jspb.Message.setField(this, 5, value);
 };
 
 

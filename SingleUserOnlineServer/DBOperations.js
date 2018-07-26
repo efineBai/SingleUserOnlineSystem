@@ -46,6 +46,7 @@ function createNewUser(userName, pwd, callback){
         "(user_name, user_pwd)\n" +
         "values\n" +
         "('"+userName+"','"+pwd+"');"
+    console.log("createNewUser sql = " + sql);
     connection.query(sql, function (err, result) {
         if(err){
             callback(-1);

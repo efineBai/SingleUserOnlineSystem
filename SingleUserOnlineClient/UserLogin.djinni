@@ -1,0 +1,10 @@
+user_login = interface +c {
+    sign_up(user_name: string, pwd:string, callback:login_status_callback ):i32;
+login(user_name:string, pwd: string, callback:login_status_callback ):i32;
+}
+
+login_status_callback = interface +c {
+    onLoginSucc();
+    onLoginOut();
+    onLoginFailed();
+}

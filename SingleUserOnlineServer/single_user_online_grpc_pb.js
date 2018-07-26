@@ -30,7 +30,7 @@ function deserialize_singleuseronline_ResultInfo(buffer_arg) {
 var SingleUserOnlineService = exports.SingleUserOnlineService = {
   // sign up a new account
   signUp: {
-    path: '/singleuseronline.SingleUserOnline/SignUp',
+    path: '/singleuseronline.SingleUserOnline/signUp',
     requestStream: false,
     responseStream: false,
     requestType: single_user_online_pb.LoginInfo,
@@ -40,33 +40,21 @@ var SingleUserOnlineService = exports.SingleUserOnlineService = {
     responseSerialize: serialize_singleuseronline_ResultInfo,
     responseDeserialize: deserialize_singleuseronline_ResultInfo,
   },
-  // logout
-  logout: {
-    path: '/singleuseronline.SingleUserOnline/Logout',
-    requestStream: false,
-    responseStream: false,
-    requestType: single_user_online_pb.LoginInfo,
-    responseType: single_user_online_pb.ResultInfo,
-    requestSerialize: serialize_singleuseronline_LoginInfo,
-    requestDeserialize: deserialize_singleuseronline_LoginInfo,
-    responseSerialize: serialize_singleuseronline_ResultInfo,
-    responseDeserialize: deserialize_singleuseronline_ResultInfo,
-  },
-  // live-statue, stream to stream
+  // live-statue, stream to stream； use status to logout or login
   keepAliveStream: {
-    path: '/singleuseronline.SingleUserOnline/KeepAliveStream',
+    path: '/singleuseronline.SingleUserOnline/keepAliveStream',
     requestStream: true,
-    responseStream: false,
+    responseStream: true,
     requestType: single_user_online_pb.LoginInfo,
-    responseType: single_user_online_pb.ResultInfo,
+    responseType: single_user_online_pb.LoginInfo,
     requestSerialize: serialize_singleuseronline_LoginInfo,
     requestDeserialize: deserialize_singleuseronline_LoginInfo,
-    responseSerialize: serialize_singleuseronline_ResultInfo,
-    responseDeserialize: deserialize_singleuseronline_ResultInfo,
+    responseSerialize: serialize_singleuseronline_LoginInfo,
+    responseDeserialize: deserialize_singleuseronline_LoginInfo,
   },
   // live-statue, short connection
   keepAliveShort: {
-    path: '/singleuseronline.SingleUserOnline/KeepAliveShort',
+    path: '/singleuseronline.SingleUserOnline/keepAliveShort',
     requestStream: false,
     responseStream: false,
     requestType: single_user_online_pb.LoginInfo,
