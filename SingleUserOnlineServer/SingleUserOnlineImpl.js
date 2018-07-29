@@ -2,6 +2,7 @@ var PROTO_PATH = __dirname + "/../protos/single_user_online.proto";
 var grpc = require('grpc');
 var protoLoader = require('@grpc/proto-loader');
 var globalConf = require('./GlobalConf');
+const crypto = require('crypto');
 // Suggested options for similarity to existing grpc.load behavior
 var packageDefinition = protoLoader.loadSync(
     PROTO_PATH,
@@ -30,11 +31,20 @@ var db = require('./DBOperations');
 db.createTables(function (result) {
     console.log("createtables result is " + result);
 });
-
+var commTools = require('./CommTools');
 // SignUp
 function signUp(call, callback) {
     var loginInfo = call.request;
     var resultInfo = new messages.ResultInfo();
+    var passwd = commTools.RsaDecode(loginInfo.getPasswordencoded());
+    if(passwd != null && passwd.length <= 10) {
+        // 丢弃请求
+        call.error();
+        return;
+    }
+    passwd = passwd.substr(0, passwd.length() -10);
+    loginInfo.setPasswordencoded(passwd);
+
     db.createNewUser(loginInfo.getUserid(), loginInfo.getPasswordencoded(), function (resultCode) {
         if (resultCode === 0) {
             resultInfo.setResultcode(0);
@@ -68,29 +78,46 @@ function keepAliveStream(call) {
         console.log(typeof (loginInfo));
 
         db.queryPwd(loginInfo.getUserid(), function (pwd) {
+            if (pwd !== null && !pwd.empty()) {
+                var time_stamp = loginInfo.getTimestamp();
+                const hash = crypto.createHash('md5');
+                hash.update(pwd + time_stamp);
+                var hash_ret = hash.digest('hex');
+                if (hash_ret.compare(loginInfo.getPasswordencoded()) == 0) {
 
-            if (pwd !== undefined && pwd.length > 0) {
-
-                if (loginInfo.getPasswordencoded() == pwd) {
                     //密码匹配成功,需要先看之前是否已经有连接了
                     var lastUserStatus = global.allUserCall.get(loginInfo.getUserid());
+                    if(lastUserStatus == null && global.allcheckingUser.contains(loginInfo.getUserid())) {
+                        lastUserStatus = global.allcheckingUser.get(loginInfo.getUserid());
+                    }
 
                     if (lastUserStatus != undefined) {
                         // 之前的连接已经存在，查看status
                         var lastLoginInfo = lastUserStatus.loginInfo;
 
-                        switch(lastLoginInfo.getStatus()){
+                        switch (lastLoginInfo.getStatus()) {
 
                             case global.CLIENT_USER_LOGIN:
                                 console.log("old user " + lastLoginInfo.getUserid() + " start to connect");
                                 lastLoginInfo.setStatus(global.USER_LOGIN_OTHER)
                                 lastUserStatus.call.write(lastLoginInfo);
                                 lastUserStatus.call.end();
+                                global.allUserCall.set(loginInfo.getUserid(), new globalConf.CallStatus(call, loginInfo, "keepAliveStream"));
+                                global.allcheckingUser.remove(loginInfo.getUserid());
+                                loginInfo.setStatus(global.USER_LOGIN_SUCC);
+                                call.write(loginInfo)
                                 break;
 
                             case global.CLIENT_USER_LOGOUT:
-                                console.log("user "+ lastLoginInfo.getUserid() + " star to logOUT");
+                                console.log("user " + lastLoginInfo.getUserid() + " star to logOUT");
                                 lastUserStatus.call.end();
+                                break;
+                            // 用户响应svr的 检测alive请求
+                            case global.CLIENT_KEEP_ALIVE:
+                                global.allUserCall.set(loginInfo.getUserid(), global.allcheckingUser.get(loginInfo.getUserid()));
+                                global.allcheckingUser.remove(loginInfo.getUserid());
+                                loginInfo.setStatus(global.USER_LOGIN_SUCC);
+                                call.write(loginInfo)
                                 break;
 
                             case defaultStatus:
@@ -106,9 +133,7 @@ function keepAliveStream(call) {
                     }
 
                     // 为新的一次登录建立连接
-                    global.allUserCall.set(loginInfo.getUserid(), new globalConf.CallStatus(call, loginInfo, "keepAliveStream"));
-                    loginInfo.setStatus(global.USER_LOGIN_SUCC);
-                    call.write(loginInfo)
+
                 } else {
 
                     loginInfo.setStatus(global.USER_PWD_ERROR);
@@ -119,20 +144,23 @@ function keepAliveStream(call) {
                 call.write(loginInfo);
             }
         });
+
     });
     call.on('end', function (loginInfo) {
-        console.log("user: "+ loginInfo.getUserid() +" break connection");
+        console.log("user: " + loginInfo.getUserid() + " break connection");
         global.allUserCall.delete(loginInfo.getUserid());
+        global.allcheckingUser.delete(loginInfo.getUserid());
     });
 
     call.on('error', function (loginInfo) {
-        console.error("ERROR: user: "+ loginInfo.getUserid() +" break connection");
+        console.error("ERROR: user: " + loginInfo.getUserid() + " break connection");
         global.allUserCall.delete(loginInfo.getUserid());
+        global.allcheckingUser.delete(loginInfo.getUserid());
     })
 
 }
 
-//
+//暂时先不做，用于低频率的keep-alive请求
 function keepAliveShort(call, callback) {
 
 }
@@ -148,7 +176,22 @@ function getServer() {
     return server;
 }
 
+var schedule = require('node-schedule');
+
+// 每一分钟遍历一次所有已经连接的用户，
+function checkUserLoged(){
+    schedule.scheduleJob("30 * * * * *", function () {
+        for(var  callstatus in global.allUserCall) {
+            var loginInfo  = callstatus.loginInfo;
+            loginInfo.setStatus(global.USER_STATUS_CHECK);
+            global.allcheckingUser.add(loginInfo.getUserid(), callstatus);
+            global.allUserCall.remove(loginInfo.getUserid());
+        }
+    })
+}
+
 var routeServer = getServer();
 routeServer.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
 routeServer.start();
+checkUserLoged();
 console.log("hello grpc")
