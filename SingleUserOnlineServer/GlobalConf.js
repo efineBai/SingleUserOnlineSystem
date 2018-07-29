@@ -8,6 +8,7 @@ function CallStatus(call, loginInfo, functionName){
     this.functionName = functionName;
     this.createTime = Date.now();
     this.lastActiveTime = Date.now();
+
     this.deviceid = loginInfo.getDeviceid();
 }
 

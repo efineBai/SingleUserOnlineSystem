@@ -11,7 +11,7 @@
 #include "GlobalData.hpp"
 
 using namespace std;
-bool SingleUserOnlineStub::SignUp(string userName, string pwd, std::shared_ptr<LoginStatusCallback> & callback) {
+bool SingleUserOnlineStub::SignUp(const string userName, const string pwd, const std::shared_ptr<LoginStatusCallback> & callback) {
     ClientContext context;
     LoginInfo loginInfo ;
     loginInfo.set_userid(userName.c_str());
@@ -33,7 +33,7 @@ bool SingleUserOnlineStub::SignUp(string userName, string pwd, std::shared_ptr<L
     return false;
 }
 
-bool SingleUserOnlineStub::keepAliveStream(string userName, string pwd, std::shared_ptr<LoginStatusCallback> & callback){
+bool SingleUserOnlineStub::keepAliveStream(const string userName,const  string pwd,const  std::shared_ptr<LoginStatusCallback> & callback){
     ClientContext context;
     LoginInfo loginInfo;
     loginInfo.set_userid(userName);
@@ -82,16 +82,12 @@ bool SingleUserOnlineStub::keepAliveStream(string userName, string pwd, std::sha
     
     return true;
 }
-
-
 int main(int argc, const char * argv[]) {
     // insert code here...
-    std::shared_ptr<Channel> channel = grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials());
-    string db;
-    SingleUserOnlineStub stub(channel, db);
+    
     string name = "clientuser";
     string pwd = "clientpwd";
-    //stub.SignUp(name, pwd);
-    stub.keepAliveStream(name, pwd);
+    
     return 0;
 }
+

@@ -18,6 +18,8 @@ public:
     virtual int32_t sign_up(const std::string & user_name, const std::string & pwd, const std::shared_ptr<LoginStatusCallback> & callback) = 0;
 
     virtual int32_t login(const std::string & user_name, const std::string & pwd, const std::shared_ptr<LoginStatusCallback> & callback) = 0;
+
+    virtual int32_t logout(const std::string & user_name, const std::string & pwd, const std::shared_ptr<LoginStatusCallback> & callback) = 0;
 };
 
 }  // namespace UserLogin
