@@ -46,7 +46,7 @@ global.private_key = "-----BEGIN PRIVATE KEY-----\n" +
 
 
 
-glbal.public_key = "-----BEGIN PUBLIC KEY-----\n" +
+global.public_key = "-----BEGIN PUBLIC KEY-----\n" +
     "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQClZ5G/wTRcEqX6gMx8fE9rnQZi\n" +
     "nPInpleRP3kHJcv48Q3Epwn8/WqyKX2ImdxHJ2DTo06FRs3O7Tj8Su4/vrdFrM4w\n" +
     "MiJEAe99Y62cv7X4psseyxL1kxcQSdgZ2wiyKMrfV2XMCSplqndgk0yJav/l74Mr\n" +

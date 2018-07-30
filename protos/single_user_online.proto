@@ -21,7 +21,7 @@ message LoginInfo {
     // 用svr的公钥进行加密，登出请求该字段为空
     string passwordEncoded = 2;
     // 时间戳
-    int64 timestamp = 3;
+    string timestamp = 3;
     // 设备标识，用于防止恶意登出
     string deviceid = 4;
     // 登录的状态

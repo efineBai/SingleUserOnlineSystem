@@ -173,6 +173,20 @@ class LoginInfo : public ::google::protobuf::Message /* @@protoc_insertion_point
   ::std::string* release_passwordencoded();
   void set_allocated_passwordencoded(::std::string* passwordencoded);
 
+  // string timestamp = 3;
+  void clear_timestamp();
+  static const int kTimestampFieldNumber = 3;
+  const ::std::string& timestamp() const;
+  void set_timestamp(const ::std::string& value);
+  #if LANG_CXX11
+  void set_timestamp(::std::string&& value);
+  #endif
+  void set_timestamp(const char* value);
+  void set_timestamp(const char* value, size_t size);
+  ::std::string* mutable_timestamp();
+  ::std::string* release_timestamp();
+  void set_allocated_timestamp(::std::string* timestamp);
+
   // string deviceid = 4;
   void clear_deviceid();
   static const int kDeviceidFieldNumber = 4;
@@ -187,12 +201,6 @@ class LoginInfo : public ::google::protobuf::Message /* @@protoc_insertion_point
   ::std::string* release_deviceid();
   void set_allocated_deviceid(::std::string* deviceid);
 
-  // int64 timestamp = 3;
-  void clear_timestamp();
-  static const int kTimestampFieldNumber = 3;
-  ::google::protobuf::int64 timestamp() const;
-  void set_timestamp(::google::protobuf::int64 value);
-
   // int32 status = 5;
   void clear_status();
   static const int kStatusFieldNumber = 5;
@@ -205,8 +213,8 @@ class LoginInfo : public ::google::protobuf::Message /* @@protoc_insertion_point
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr userid_;
   ::google::protobuf::internal::ArenaStringPtr passwordencoded_;
+  ::google::protobuf::internal::ArenaStringPtr timestamp_;
   ::google::protobuf::internal::ArenaStringPtr deviceid_;
-  ::google::protobuf::int64 timestamp_;
   ::google::protobuf::int32 status_;
   mutable int _cached_size_;
   friend struct ::protobuf_single_5fuser_5fonline_2eproto::TableStruct;
@@ -443,18 +451,57 @@ inline void LoginInfo::set_allocated_passwordencoded(::std::string* passwordenco
   // @@protoc_insertion_point(field_set_allocated:singleuseronline.LoginInfo.passwordEncoded)
 }
 
-// int64 timestamp = 3;
+// string timestamp = 3;
 inline void LoginInfo::clear_timestamp() {
-  timestamp_ = GOOGLE_LONGLONG(0);
+  timestamp_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::google::protobuf::int64 LoginInfo::timestamp() const {
+inline const ::std::string& LoginInfo::timestamp() const {
   // @@protoc_insertion_point(field_get:singleuseronline.LoginInfo.timestamp)
-  return timestamp_;
+  return timestamp_.GetNoArena();
 }
-inline void LoginInfo::set_timestamp(::google::protobuf::int64 value) {
+inline void LoginInfo::set_timestamp(const ::std::string& value) {
   
-  timestamp_ = value;
+  timestamp_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:singleuseronline.LoginInfo.timestamp)
+}
+#if LANG_CXX11
+inline void LoginInfo::set_timestamp(::std::string&& value) {
+  
+  timestamp_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:singleuseronline.LoginInfo.timestamp)
+}
+#endif
+inline void LoginInfo::set_timestamp(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  timestamp_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:singleuseronline.LoginInfo.timestamp)
+}
+inline void LoginInfo::set_timestamp(const char* value, size_t size) {
+  
+  timestamp_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:singleuseronline.LoginInfo.timestamp)
+}
+inline ::std::string* LoginInfo::mutable_timestamp() {
+  
+  // @@protoc_insertion_point(field_mutable:singleuseronline.LoginInfo.timestamp)
+  return timestamp_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LoginInfo::release_timestamp() {
+  // @@protoc_insertion_point(field_release:singleuseronline.LoginInfo.timestamp)
+  
+  return timestamp_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LoginInfo::set_allocated_timestamp(::std::string* timestamp) {
+  if (timestamp != NULL) {
+    
+  } else {
+    
+  }
+  timestamp_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), timestamp);
+  // @@protoc_insertion_point(field_set_allocated:singleuseronline.LoginInfo.timestamp)
 }
 
 // string deviceid = 4;

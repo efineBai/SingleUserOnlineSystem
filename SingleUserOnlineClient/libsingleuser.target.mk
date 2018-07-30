@@ -33,6 +33,7 @@ LOCAL_SRC_FILES := \
 	SingleUserOnlineClient/user_login_djinni_impl.cpp \
 	SingleUserOnlineClient/GlobalData.cpp \
 	SingleUserOnlineClient/single_user_online_client.cpp \
+	SingleUserOnlineClient/CommTools.cpp \
 	SingleUserOnlineClient/build/CMakeFiles/3.12.0/CompilerIdCXX/CMakeCXXCompilerId.cpp
 
 
@@ -114,12 +115,12 @@ LOCAL_ASFLAGS := $(LOCAL_CFLAGS)
 
 LOCAL_LDFLAGS_Debug := \
 	-llog \
-	-Wl,-Wno-unused-variable,-Werror=unused-parameter,--build-id,--gc-sections,--exclude-libs,ALL
+	-Wl,--build-id,-Wno-unused-parameter,--gc-sections,--exclude-libs,ALL
 
 
 LOCAL_LDFLAGS_Release := \
 	-llog \
-	-Wl,-Wno-unused-variable,-Werror=unused-parameter,--build-id,--gc-sections,--exclude-libs,ALL
+	-Wl,--build-id,-Wno-unused-parameter,--gc-sections,--exclude-libs,ALL
 
 LOCAL_GYP_LIBS :=
 

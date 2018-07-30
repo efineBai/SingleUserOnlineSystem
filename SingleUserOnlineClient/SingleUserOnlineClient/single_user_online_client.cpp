@@ -33,11 +33,12 @@ bool SingleUserOnlineStub::SignUp(const string userName, const string pwd, const
     return false;
 }
 
-bool SingleUserOnlineStub::keepAliveStream(const string userName,const  string pwd,const  std::shared_ptr<LoginStatusCallback> & callback){
+bool SingleUserOnlineStub::keepAliveStream(const string userName,const  string pwd, const string time_stamp, const  std::shared_ptr<LoginStatusCallback> & callback){
     ClientContext context;
     LoginInfo loginInfo;
     loginInfo.set_userid(userName);
-    loginInfo.set_passwordencoded(pwd);
+    loginInfo.set_timestamp(time_stamp);
+    
     
     // 声明一个writer, 用来向svr发送数据
     std:shared_ptr<ClientReaderWriter<LoginInfo, LoginInfo>> stream(stub_->keepAliveStream(&context));

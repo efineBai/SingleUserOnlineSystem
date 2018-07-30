@@ -8,7 +8,7 @@
         "deps/djinni/support-lib/support_lib.gyp:djinni_jni",
         "deps/grpc/grpc.gyp:grpc++"
       ],
-      "ldflags" : [ "-llog", "-Wl,-Wno-unused-variable,-Werror=unused-parameter,--build-id,--gc-sections,--exclude-libs,ALL" ],
+      "ldflags" : [ "-llog", "-Wl,--build-id,-Wno-unused-parameter,--gc-sections,--exclude-libs,ALL" ],
       "sources": [
         "./deps/djinni/support-lib/jni/djinni_main.cpp",
         "<!@(python deps/djinni/example/glob.py generated-src/jni   '*.cpp')",
