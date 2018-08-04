@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <string>
 
-#endif /* GlobalData_hpp */
+using std::string;
 namespace GlobalData{
     const int USER_PWD_ERROR = -10001;
     const int USER_NOT_EXIST = -10002;
@@ -28,3 +28,4 @@ namespace GlobalData{
     const string PUBLIC_KEY = "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQClZ5G/wTRcEqX6gMx8fE9rnQZi\nnPInpleRP3kHJcv48Q3Epwn8/WqyKX2ImdxHJ2DTo06FRs3O7Tj8Su4/vrdFrM4w\nMiJEAe99Y62cv7X4psseyxL1kxcQSdgZ2wiyKMrfV2XMCSplqndgk0yJav/l74Mr\nc/R99SkmM4rIrs6sLQIDAQAB\n-----END PUBLIC KEY-----";
     
 }
+#endif /* GlobalData_hpp */

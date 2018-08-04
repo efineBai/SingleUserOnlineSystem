@@ -2,40 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5cb285d-c54b-4736-a064-e7b1c9d1d57d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/CMakeFiles/SingleUserOnlineClient.dir/depend.make" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/djinni_run.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/CMakeFiles/progress.marks" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/CMakeFiles/SingleUserOnlineClient.dir/progress.make" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/CMakeFiles/SingleUserOnlineClient.dir/DependInfo.cmake" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/SingleUserOnlineClient.cbp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/Makefile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/CMakeFiles/SingleUserOnlineClient.dir/flags.make" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/main.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/.idea/SingleUserOnlineClient.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/CMakeFiles/Makefile.cmake" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/CMakeFiles/SingleUserOnlineClient.dir/link.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/CMakeLists.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/CMakeFiles/SingleUserOnlineClient.dir/build.make" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/cmake_install.cmake" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/CMakeFiles/SingleUserOnlineClient.dir/cmake_clean.cmake" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/single_user_online_client" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/CMakeFiles/Makefile2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/CMakeFiles/SingleUserOnlineClient.dir/depend.internal" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/generated-src/java/com/single/user/login/UserLogin.java" afterPath="$PROJECT_DIR$/SingleUserOnlineClient/generated-src/java/com/single/user/login/UserLogin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/user_login_djinni_impl.cpp" afterPath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/user_login_djinni_impl.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterPath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/CMakeFiles/CMakeOutput.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/generated-src/java/com/single/user/login/LoginStatusCallback.java" afterPath="$PROJECT_DIR$/SingleUserOnlineClient/generated-src/java/com/single/user/login/LoginStatusCallback.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/single_user_online_client.hpp" afterPath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/single_user_online_client.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/CMakeFiles/clion-log.txt" afterPath="$PROJECT_DIR$/SingleUserOnlineClient/cmake-build-debug/CMakeFiles/clion-log.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineServer/GlobalConf.js" afterPath="$PROJECT_DIR$/SingleUserOnlineServer/GlobalConf.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient.xcodeproj/project.xcworkspace/xcuserdata/castlebai.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient.xcodeproj/project.xcworkspace/xcuserdata/castlebai.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/.idea/workspace.xml" afterPath="$PROJECT_DIR$/SingleUserOnlineClient/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/single_user_online_client.cpp" afterPath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/single_user_online_client.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/Makefile" afterPath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/Makefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -49,16 +16,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="route_guide.proto" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../grpc/examples/protos/route_guide.proto">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="51" column="49" lean-forward="false" selection-start-line="51" selection-start-column="43" selection-end-line="51" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="generate.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/protos/generate.sh">
           <provider selected="true" editor-type-id="text-editor">
@@ -72,8 +29,8 @@
       <file leaf-file-name="single_user_online.proto" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/protos/single_user_online.proto">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="1" lean-forward="false" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+            <state relative-caret-position="323">
+              <caret line="19" column="18" lean-forward="false" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -82,8 +39,18 @@
       <file leaf-file-name="SingleUserOnlineImpl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/SingleUserOnlineImpl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1938">
-              <caret line="114" column="31" lean-forward="false" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
+            <state relative-caret-position="51">
+              <caret line="3" column="17" lean-forward="false" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="single_user_online_client.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/single_user_online_client.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -92,8 +59,8 @@
       <file leaf-file-name="CommTools.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/CommTools.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="153">
+              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -102,8 +69,8 @@
       <file leaf-file-name="GlobalConf.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/GlobalConf.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="357">
+              <caret line="44" column="33" lean-forward="true" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -142,8 +109,8 @@
       <file leaf-file-name="DBOperations.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/DBOperations.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="9" lean-forward="false" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
+            <state relative-caret-position="731">
+              <caret line="43" column="9" lean-forward="false" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -158,6 +125,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>LoginInfo</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -165,13 +137,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/SingleUserOnlineServer/CommTools.js" />
         <option value="$PROJECT_DIR$/protos/generate.sh" />
         <option value="vm:277" />
         <option value="$PROJECT_DIR$/SingleUserOnlineServer/DBOperations.js" />
         <option value="vm:249" />
-        <option value="$PROJECT_DIR$/SingleUserOnlineServer/SingleUserOnlineImpl.js" />
         <option value="$PROJECT_DIR$/protos/single_user_online.proto" />
+        <option value="$PROJECT_DIR$/SingleUserOnlineServer/CommTools.js" />
+        <option value="$PROJECT_DIR$/SingleUserOnlineServer/SingleUserOnlineImpl.js" />
         <option value="$PROJECT_DIR$/SingleUserOnlineServer/GlobalConf.js" />
       </list>
     </option>
@@ -190,12 +162,14 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/SingleUserOnlineClient/deps/grpc/bazel-grpc/examples/node/node_modules" />
+    <handled-path value="$PROJECT_DIR$/SingleUserOnlineClient/deps/grpc/bazel-grpc/external/com_github_grpc_grpc/examples/node/node_modules" />
+    <handled-path value="$PROJECT_DIR$/SingleUserOnlineClient/deps/grpc/examples/node/node_modules" />
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1920" />
-    <option name="height" value="1057" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -213,7 +187,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -240,6 +213,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -291,12 +265,14 @@
       <workItem from="1532243861659" duration="9281000" />
       <workItem from="1532270077791" duration="12325000" />
       <workItem from="1532571719602" duration="8243000" />
-      <workItem from="1532859891200" duration="1000" />
+      <workItem from="1532859891200" duration="7023000" />
+      <workItem from="1532917349019" duration="23000" />
+      <workItem from="1532945777311" duration="1216000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41296000" />
+    <option name="totallyTimeSpent" value="49557000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -305,12 +281,12 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24960506" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3247269" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3247269" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48361468" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39920557" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39920557" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -341,12 +317,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/SingleUserOnlineServer/SingleUserOnlineImpl.js</url>
-          <line>38</line>
+          <line>48</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/SingleUserOnlineServer/GlobalConf.js</url>
-          <line>11</line>
+          <line>12</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
@@ -355,14 +331,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/DBOperations.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="9" lean-forward="false" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../grpc/examples/node/static_codegen/route_guide/route_guide_client.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -434,7 +402,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="799">
           <caret line="59" column="13" lean-forward="false" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -657,35 +624,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/CommTools.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../grpc/examples/protos/route_guide.proto">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="51" column="49" lean-forward="false" selection-start-line="51" selection-start-column="43" selection-end-line="51" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/single_user_online_pb.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3298">
-          <caret line="194" column="0" lean-forward="false" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/DBOperations.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="9" lean-forward="false" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -705,14 +647,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protos/single_user_online.proto">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="1" lean-forward="false" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/protos/generate.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -721,18 +655,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/protos/single_user_online.proto">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="18" lean-forward="false" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/DBOperations.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="9" lean-forward="false" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/single_user_online_client.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/single_user_online_pb.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3298">
+          <caret line="194" column="0" lean-forward="false" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/SingleUserOnlineImpl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1938">
-          <caret line="114" column="31" lean-forward="false" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
+        <state relative-caret-position="51">
+          <caret line="3" column="17" lean-forward="false" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/CommTools.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/GlobalConf.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="357">
+          <caret line="44" column="33" lean-forward="true" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
           <folding />
         </state>
       </provider>

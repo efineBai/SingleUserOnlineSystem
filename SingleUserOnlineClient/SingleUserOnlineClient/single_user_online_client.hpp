@@ -23,7 +23,7 @@
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
 #include "single_user_online.grpc.pb.h"
-#include "login_status_callback.hpp"
+#include "../generated-src/cpp/login_status_callback.hpp"
 
 
 using grpc::Channel;
