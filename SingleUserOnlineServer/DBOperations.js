@@ -61,7 +61,24 @@ function createNewUser(userName, pwd, callback){
     })
 }
 
+function loadRules(callback){
+    var sql = "select * from user_forbid;"
+    connection.query(sql, function (err, result) {
+        if(err) {
+            callback([]);
+        } else {
+            var array = new Array();
+            result.forEach(function (rule, index, a){
+                array.push(rule.useridrexp);
+            });
+
+            callback(array);
+        }
+    })
+}
+
 
 exports.createTables = createTables;
 exports.createNewUser = createNewUser;
 exports.queryPwd = queryPwd;
+exports.loadRules = loadRules;

@@ -202,8 +202,34 @@ function checkUserLoged(){
     })
 }
 
+// 按照一定的规则将用户进行剔除
+function kickoutTargetUsers(){
+    schedule.scheduleJob("1 * * * * *", function () {
+        db.loadRules(function (array) {
+            if(array.length == 0){
+                // 不需要剔除用户
+                return;
+            } else{
+                global.allUserCall.forEach(function (status, username, map) {
+                    array.forEach(function (rexp, index, array) {
+                        if (username.match(rexp)){
+                            console.log("user %s match", username);
+                            var lastloginInfo = status.loginInfo;
+                            lastloginInfo.setStatus(global.USER_LOGIN_OTHER)
+                            status.call.write(lastloginInfo);
+                            status.call.end();
+                        }
+                    });
+                });
+            }
+        });
+    });
+
+}
+
 var routeServer = getServer();
 routeServer.bind('0.0.0.0:3001', grpc.ServerCredentials.createInsecure());
 routeServer.start();
-checkUserLoged();
+// checkUserLoged();
+kickoutTargetUsers();
 console.log("hello grpc")
