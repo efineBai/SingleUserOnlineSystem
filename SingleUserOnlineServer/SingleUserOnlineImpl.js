@@ -35,22 +35,25 @@ var commTools = require('./CommTools');
 // SignUp
 function signUp(call, callback) {
     var loginInfo = call.request;
+    console.log("sign up called,"+ loginInfo.getUserid()+"; pwd="+ loginInfo.getPasswordencoded());
     var resultInfo = new messages.ResultInfo();
     var passwd = commTools.RsaDecode(loginInfo.getPasswordencoded());
     if(passwd != null && passwd.length <= 10) {
-        // 丢弃请求
-        call.error();
+        // 返回失败
+        resultInfo.setResultcode(global.USER_INFO_ILLEGAL);
+        resultInfo.setResultmsg("pwd is empty or length is less than 10");
+        callback(null, resultInfo);
         return;
     }
-    passwd = passwd.substr(0, passwd.length() -10);
+    passwd = passwd.substr(0, passwd.length -10);
     loginInfo.setPasswordencoded(passwd);
 
     db.createNewUser(loginInfo.getUserid(), loginInfo.getPasswordencoded(), function (resultCode) {
         if (resultCode === 0) {
-            resultInfo.setResultcode(0);
+            resultInfo.setResultcode(global.USER_SIGNUP_SUCC);
             resultInfo.setResultmsg("sign up success");
         } else {
-            resultInfo.setResultcode(-1);
+            resultInfo.setResultcode(global.USER_SIGNUP_ERR);
             resultInfo.setResultmsg("sign up failed");
         }
         callback(null, resultInfo)
@@ -59,6 +62,7 @@ function signUp(call, callback) {
 }
 
 function logout(call, callback) {
+    console.log("log out called");
     var resultInfo = new messages.ResultInfo();
     var loginInfo = call.request;
     var lastCallInfo = global.allUserCall.get(loginInfo.getUserid());
@@ -75,19 +79,18 @@ function logout(call, callback) {
 function keepAliveStream(call) {
 
     call.on('data', function (loginInfo) {
-        console.log(typeof (loginInfo));
-
+        console.log("keepAliveStream called");
         db.queryPwd(loginInfo.getUserid(), function (pwd) {
-            if (pwd !== null && !pwd.empty()) {
+            if (pwd !== null && pwd.length!==0) {
                 var time_stamp = loginInfo.getTimestamp();
                 const hash = crypto.createHash('md5');
                 hash.update(pwd + time_stamp);
                 var hash_ret = hash.digest('hex');
-                if (hash_ret.compare(loginInfo.getPasswordencoded()) == 0) {
+                if (hash_ret.toLowerCase() ==loginInfo.getPasswordencoded().toLowerCase()) {
 
                     //密码匹配成功,需要先看之前是否已经有连接了
                     var lastUserStatus = global.allUserCall.get(loginInfo.getUserid());
-                    if(lastUserStatus == null && global.allcheckingUser.contains(loginInfo.getUserid())) {
+                    if(lastUserStatus == null && global.allcheckingUser.has(loginInfo.getUserid())) {
                         lastUserStatus = global.allcheckingUser.get(loginInfo.getUserid());
                     }
 
@@ -103,7 +106,7 @@ function keepAliveStream(call) {
                                 lastUserStatus.call.write(lastLoginInfo);
                                 lastUserStatus.call.end();
                                 global.allUserCall.set(loginInfo.getUserid(), new globalConf.CallStatus(call, loginInfo, "keepAliveStream"));
-                                global.allcheckingUser.remove(loginInfo.getUserid());
+                                global.allcheckingUser.delete(loginInfo.getUserid());
                                 loginInfo.setStatus(global.USER_LOGIN_SUCC);
                                 call.write(loginInfo)
                                 break;
@@ -115,21 +118,31 @@ function keepAliveStream(call) {
                             // 用户响应svr的 检测alive请求
                             case global.CLIENT_KEEP_ALIVE:
                                 global.allUserCall.set(loginInfo.getUserid(), global.allcheckingUser.get(loginInfo.getUserid()));
-                                global.allcheckingUser.remove(loginInfo.getUserid());
+                                global.allcheckingUser.delete(loginInfo.getUserid());
                                 loginInfo.setStatus(global.USER_LOGIN_SUCC);
                                 call.write(loginInfo)
                                 break;
 
-                            case defaultStatus:
+                            default:
                                 // 先默认为登录
-                                console.log("default: old user " + lastLoginInfo.getUserid() + " start to connect");
+                                console.log("old user " + lastLoginInfo.getUserid() + " start to connect");
                                 lastLoginInfo.setStatus(global.USER_LOGIN_OTHER)
                                 lastUserStatus.call.write(lastLoginInfo);
                                 lastUserStatus.call.end();
+                                global.allUserCall.set(loginInfo.getUserid(), new globalConf.CallStatus(call, loginInfo, "keepAliveStream"));
+                                global.allcheckingUser.delete(loginInfo.getUserid());
+                                loginInfo.setStatus(global.USER_LOGIN_SUCC);
+                                call.write(loginInfo)
                         }
 
                     } else {
+                        // 之前该用户并没有在线
                         console.log("new user " + loginInfo.getUserid() + " start to connect");
+                        global.allUserCall.set(loginInfo.getUserid(), call);
+                        loginInfo.setStatus(global.USER_LOGIN_SUCC);
+                        call.write(loginInfo);
+                        global.allUserCall.set(loginInfo.getUserid(), new globalConf.CallStatus(call, loginInfo, "keepAliveStream"));
+
                     }
 
                     // 为新的一次登录建立连接
@@ -140,22 +153,21 @@ function keepAliveStream(call) {
                     call.write(loginInfo);
                 }
             } else {
-                loginInfo.setResultcode(global.USER_NOT_EXIST);
+                loginInfo.setStatus(global.USER_NOT_EXIST);
                 call.write(loginInfo);
+
             }
         });
 
     });
     call.on('end', function (loginInfo) {
-        console.log("user: " + loginInfo.getUserid() + " break connection");
-        global.allUserCall.delete(loginInfo.getUserid());
-        global.allcheckingUser.delete(loginInfo.getUserid());
+        console.log( "end: break connection");
+        call.end();
     });
 
     call.on('error', function (loginInfo) {
-        console.error("ERROR: user: " + loginInfo.getUserid() + " break connection");
-        global.allUserCall.delete(loginInfo.getUserid());
-        global.allcheckingUser.delete(loginInfo.getUserid());
+        console.error("ERROR: user:  break connection");
+       call.error();
     })
 
 }
@@ -183,15 +195,15 @@ function checkUserLoged(){
     schedule.scheduleJob("30 * * * * *", function () {
         for(var  callstatus in global.allUserCall) {
             var loginInfo  = callstatus.loginInfo;
-            loginInfo.setStatus(global.USER_STATUS_CHECK);
-            global.allcheckingUser.add(loginInfo.getUserid(), callstatus);
-            global.allUserCall.remove(loginInfo.getUserid());
+            loginInfo.setStatus(global.USER_STATUS_CHECK_SUCC);
+            global.allcheckingUser.set(loginInfo.getUserid(), callstatus);
+            global.allUserCall.delete(loginInfo.getUserid());
         }
     })
 }
 
 var routeServer = getServer();
-routeServer.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
+routeServer.bind('0.0.0.0:3001', grpc.ServerCredentials.createInsecure());
 routeServer.start();
 checkUserLoged();
 console.log("hello grpc")

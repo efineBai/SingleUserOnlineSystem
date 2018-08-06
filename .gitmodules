@@ -4,12 +4,6 @@
 [submodule "SingleUserOnlineClient/deps/grpc"]
 	path = SingleUserOnlineClient/deps/grpc
 	url = https://github.com/grpc/grpc.git
-[submodule "SingleUserOnlineClient/deps/protobuf"]
-	path = SingleUserOnlineClient/deps/protobuf
-	url = https://github.com/google/protobuf.git
 [submodule "SingleUserOnlineClient/deps/gyp"]
 	path = SingleUserOnlineClient/deps/gyp
 	url = https://chromium.googlesource.com/external/gyp.git
-[submodule "SingleUserOnlineClient/deps/openssl"]
-	path = SingleUserOnlineClient/deps/openssl
-	url = https://github.com/luvit/openssl.git

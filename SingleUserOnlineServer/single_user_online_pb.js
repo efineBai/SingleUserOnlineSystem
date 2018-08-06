@@ -62,7 +62,7 @@ proto.singleuseronline.LoginInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
     userid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     passwordencoded: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    timestamp: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    timestamp: jspb.Message.getFieldWithDefault(msg, 3, ""),
     deviceid: jspb.Message.getFieldWithDefault(msg, 4, ""),
     status: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
@@ -110,7 +110,7 @@ proto.singleuseronline.LoginInfo.deserializeBinaryFromReader = function(msg, rea
       msg.setPasswordencoded(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setTimestamp(value);
       break;
     case 4:
@@ -165,8 +165,8 @@ proto.singleuseronline.LoginInfo.serializeBinaryToWriter = function(message, wri
     );
   }
   f = message.getTimestamp();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       3,
       f
     );
@@ -219,15 +219,15 @@ proto.singleuseronline.LoginInfo.prototype.setPasswordencoded = function(value) 
 
 
 /**
- * optional int64 timestamp = 3;
- * @return {number}
+ * optional string timestamp = 3;
+ * @return {string}
  */
 proto.singleuseronline.LoginInfo.prototype.getTimestamp = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
-/** @param {number} value */
+/** @param {string} value */
 proto.singleuseronline.LoginInfo.prototype.setTimestamp = function(value) {
   jspb.Message.setField(this, 3, value);
 };

@@ -57,10 +57,10 @@ public:
      * 用来保成登录状态一直有效
      */
     bool keepAliveStream(const string userName, const string pwd, const string time_stamp, const std::shared_ptr<LoginStatusCallback> & callback);
-    
+
     bool logout();
-    
- 
+
+
 private:
     std::unique_ptr<SingleUserOnline::Stub> stub_;
     std::shared_ptr<ClientReaderWriter<LoginInfo, LoginInfo>> currentStream;
@@ -68,3 +68,4 @@ private:
 
 };
 #endif /* gRPCStubService_hpp */
+

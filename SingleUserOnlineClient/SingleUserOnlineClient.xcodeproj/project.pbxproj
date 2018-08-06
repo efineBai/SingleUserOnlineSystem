@@ -42,6 +42,7 @@
 		3329AB8F210A03060062C97B /* user_login_djinni_impl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = user_login_djinni_impl.cpp; sourceTree = "<group>"; };
 		3329AB91210DDB9D0062C97B /* CommTools.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CommTools.cpp; sourceTree = "<group>"; };
 		3329AB92210DDB9D0062C97B /* CommTools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CommTools.hpp; sourceTree = "<group>"; };
+		338D9F132116E06800AE9954 /* user_login_djinni_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = user_login_djinni_impl.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,15 +80,16 @@
 				3329AB8321096F590062C97B /* single_user_online.grpc.pb.h */,
 				3329AB8421096F590062C97B /* single_user_online.pb.h */,
 				3329AB8D210A00D70062C97B /* login_status_callback.hpp */,
-				3329AB8E210A00D70062C97B /* user_login.hpp */,
 				3329AB7E21096DB00062C97B /* single_user_online_client.cpp */,
 				3329AB8021096DB00062C97B /* single_user_online_client.hpp */,
 				3329AB882109DB0D0062C97B /* Makefile */,
 				3329AB852109D8440062C97B /* GlobalData.cpp */,
 				3329AB862109D8440062C97B /* GlobalData.hpp */,
-				3329AB8F210A03060062C97B /* user_login_djinni_impl.cpp */,
 				3329AB91210DDB9D0062C97B /* CommTools.cpp */,
 				3329AB92210DDB9D0062C97B /* CommTools.hpp */,
+				3329AB8E210A00D70062C97B /* user_login.hpp */,
+				3329AB8F210A03060062C97B /* user_login_djinni_impl.cpp */,
+				338D9F132116E06800AE9954 /* user_login_djinni_impl.h */,
 			);
 			path = SingleUserOnlineClient;
 			sourceTree = "<group>";
@@ -272,6 +274,7 @@
 				HEADER_SEARCH_PATHS = (
 					/Users/castlebai/git/grpc/include,
 					/usr/local/include,
+					"/Users/castlebai/NVPACK/android-ndk-r12b/platforms/android-21/arch-x86_64/usr/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -284,6 +287,7 @@
 				HEADER_SEARCH_PATHS = (
 					/Users/castlebai/git/grpc/include,
 					/usr/local/include,
+					"/Users/castlebai/NVPACK/android-ndk-r12b/platforms/android-21/arch-x86_64/usr/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

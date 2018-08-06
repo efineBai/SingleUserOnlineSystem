@@ -7,22 +7,48 @@
 //
 
 #include <iostream>
-#include "../generated-src/cpp/user_login.hpp"
+#include "user_login_djinni_impl.h"
 #include "single_user_online_client.hpp"
 #include <ctime>
 #include <string>
 #include <sstream>
 #include "CommTools.cpp"
+#include <grpc/grpc.h>
+#include <grpcpp/channel.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/create_channel.h>
+#include <grpcpp/security/credentials.h>
+#include <ctime>
+
+
+using grpc::Channel;
+using grpc::ClientContext;
+using grpc::ClientReader;
+using grpc::ClientReaderWriter;
+using grpc::ClientWriter;
+using grpc::Status;
+using std::cerr;
+using std::cout;
+using std::endl;
+
 
 /*
  * 注册用户时，需要传递用户的密码，这时需要用服务端的publickey 进行加密
  */
- 
-int32_t UserLogin::UserLogin::sign_up(const std::string &user_name, const std::string &pwd, const std::shared_ptr<LoginStatusCallback> &callback){
-    std::shared_ptr<Channel> channel = grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials());
+namespace UserLogin {
+
+int32_t UserLoginImpl::sign_up(const std::string &user_name, const std::string &pwd, const std::shared_ptr<LoginStatusCallback> &callback){
+    LOGD("user signup called in cpp1");
+    std::shared_ptr<Channel> channel = grpc::CreateChannel("10.70.81.18:3001", grpc::InsecureChannelCredentials());
+    if(channel == nullptr) {
+        LOGD("channel create error");
+    }
     string db;
     SingleUserOnlineStub stub(channel, db);
-    std::string encodedPwd = CommTools::RsaEncodeWithSvr(pwd);
+    std::time_t t = std::time(0);
+    std::string pwd_salt = pwd + std::to_string(t);
+    std::string encodedPwd = CommTools::RsaEncodeWithSvr(pwd_salt);
+    LOGD("user signup called in cpp, pwd after encocded : %s", encodedPwd.c_str());
     stub.SignUp(user_name, encodedPwd, callback);
 
     return -1;
@@ -31,28 +57,36 @@ int32_t UserLogin::UserLogin::sign_up(const std::string &user_name, const std::s
 /*
  * 登录时，与后台通信不需要用密码，使用pwd + timestamp 并进行hash
  */
-int32_t UserLogin::UserLogin::login(const std::string & user_name, const std::string & pwd, const std::shared_ptr<LoginStatusCallback> & callback){
+int32_t UserLoginImpl::login(const std::string & user_name, const std::string & pwd, const std::shared_ptr<LoginStatusCallback> & callback){
+     LOGD("user login called in cpp1");
     if(user_name.empty() || pwd.empty()) {
         if(callback != nullptr) {
-            callback->onLoginFailed();
+            callback->onLoginFailed(GlobalData::CLIENT_USER_LOGIN, "username or pwd is empty");
+            cerr<<"user_name or pwd is empty";
         }
         return -1;
     }
-    std::shared_ptr<Channel> channel = grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials());
+    std::shared_ptr<Channel> channel = grpc::CreateChannel("10.70.81.18:3001", grpc::InsecureChannelCredentials());
     string db;
     SingleUserOnlineStub stub(channel, db);
     
     std::time_t t = std::time(0);
-    std::stringstream ss;
-    ss << t;
-    std::string ts = ss.str();
-    string p = pwd;
-    p += ts;
-    std::hash<std::string> h;
-    p = std::to_string(h(p));
+    string ts = std::to_string(t);
+    string p = pwd + ts;
+    p = CommTools::getMD5(p);
     
-    stub.keepAliveStream(user_name, pwd, ts, callback);
+    //string hex_p = CommTools::buff_to_hexstring(p.c_str(), (int)std::strlen(p.c_str()));
+    LOGD("user pwd after hash: %s", p.c_str());
+    stub.keepAliveStream(user_name, p, ts, callback);
     return -1;
 }
 
+    int32_t UserLoginImpl::logout(const std::string &user_name, const std::string &pwd, const std::shared_ptr<LoginStatusCallback> &callback){
+        return -1;
+    }
+    
+    std::shared_ptr<UserLogin> UserLogin::createUserInterface(){
+    return std::make_shared<UserLoginImpl>();
+}
+}
 

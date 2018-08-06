@@ -77,11 +77,20 @@ find_library(log-lib
 file(GLOB SOURCES
     src/main/cpp/src/*.cpp
     src/main/cpp/src/*.h
-
+    ../../SingleUserOnlineClient/*.hpp
     ../../SingleUserOnlineClient/*.cpp
     ../../generated-src/cpp/*.hpp
+    ../../generated-src/jni/*.cpp
+    ../../generated-src/jni/*.hpp
+    ../../deps/djinni/support-lib/jni/*.cpp
     )
-
+include_directories(
+    ../../deps/grpc/third_party/boringssl/include
+    ../../deps/djinni/support-lib/jni
+    ../../generated-src/cpp/*.hpp
+    ../../generated-src/jni/*.hpp
+    ../../SingleUserOnlineClient/*.hpp
+)
 # 将上述文件编译一个名为 `native-lib` 的 so
 add_library(native-lib
             SHARED

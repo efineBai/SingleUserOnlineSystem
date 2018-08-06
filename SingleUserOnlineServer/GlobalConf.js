@@ -17,9 +17,15 @@ function CallStatus(call, loginInfo, functionName){
 global.USER_PWD_ERROR = -10001;
 global.USER_NOT_EXIST = -10002;
 global.USER_LOGIN_OTHER = -10003; //用户在其他设备上进行了登录
+global.USER_SIGNUP_ERR = -10004;
+global.USER_INFO_ILLEGAL = -10005;
+
 global.USER_LOGIN_SUCC = 10000; //用户登录成功
 global.USER_LOGOUT_SUCC = 10001;
-global.USER_STATUS_CHECK = 10002;
+global.USER_STATUS_CHECK_SUCC = 10002;
+global.USER_SIGNUP_SUCC = 10003;
+global.USER_STATUS_NEED_CHECK = 10004;
+
 
 // 客户端发起的错误码
 global.CLIENT_USER_LOGIN = 20000;
@@ -42,7 +48,7 @@ global.private_key = "-----BEGIN PRIVATE KEY-----\n" +
     "BZrA5HuCCRHUxxeIsWx2lnPymsUwU+MBxThBvOlvcyo6uv67wFOk8qcCQHaPgiLd\n" +
     "TTzIq4Wq+9+iA8okg6lxu76s1c0wh0lX9jACYPeEbTSg51T+foob7XO0ct8pI20f\n" +
     "LQO2EkquxZL8UZM=\n" +
-    "-----END PRIVATE KEY-----\n"
+    "-----END PRIVATE KEY-----";
 
 
 

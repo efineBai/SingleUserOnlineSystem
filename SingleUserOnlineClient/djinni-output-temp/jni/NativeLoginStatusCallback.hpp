@@ -4,8 +4,7 @@
 #pragma once
 
 #include "djinni_support.hpp"
-
-#include "../cpp/login_status_callback.hpp"
+#include "login_status_callback.hpp"
 
 namespace djinni_generated {
 

@@ -6,7 +6,7 @@
 
 static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for this file");
 
-@class UserLogin_UserLogin;
+@class TXSUserLogin;
 
 namespace djinni_generated {
 
@@ -15,7 +15,7 @@ class UserLogin
 public:
     using CppType = std::shared_ptr<::UserLogin::UserLogin>;
     using CppOptType = std::shared_ptr<::UserLogin::UserLogin>;
-    using ObjcType = UserLogin_UserLogin*;
+    using ObjcType = TXSUserLogin*;
 
     using Boxed = UserLogin;
 

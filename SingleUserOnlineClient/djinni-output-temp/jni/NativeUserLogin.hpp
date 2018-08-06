@@ -4,7 +4,7 @@
 #pragma once
 
 #include "djinni_support.hpp"
-#include "../cpp/user_login.hpp"
+#include "user_login.hpp"
 
 namespace djinni_generated {
 

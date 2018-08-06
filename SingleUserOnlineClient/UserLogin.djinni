@@ -2,10 +2,13 @@ user_login = interface +c {
     sign_up(user_name: string, pwd:string, callback:login_status_callback ):i32;
     login(user_name:string, pwd: string, callback:login_status_callback ):i32;
     logout(user_name:string, pwd: string, callback:login_status_callback ):i32;
+    static createUserInterface(): user_login;
 }
 
-login_status_callback = interface +c {
+login_status_callback = interface +j +o {
     onLoginSucc();
-    onLoginOut();
-    onLoginFailed();
+onLoginOut(retCode: i32, msg: string);
+    onLoginFailed(retCode: i32, msg: string);
+    onSignUpSucc();
+    onSignUpFailed(retCode: i32, msg: string);
 }

@@ -29,13 +29,18 @@ function createTables(callback){
 
 //查询用户的密码
 function queryPwd(userName, callback){
-   var sql = "SELECT user_pwd FROM singleuser.user_info\n" +
+   var sql = "SELECT * FROM singleuser.user_info\n" +
        "WHERE user_name = '"+userName+"';"
     connection.query(sql, function (err, result) {
         if(err){
-            callback(-1);
+            callback("");
         } else {
-            callback(result[0].user_pwd);
+            if(result.length > 0) {
+                console.log(result[0]);
+                callback(result[0].user_pwd.toString());
+            } else {
+                callback("");
+            }
         }
     })
 }
