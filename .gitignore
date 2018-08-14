@@ -122,3 +122,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+bazel-SingleUserOnline
+bazel-bin
+bazel-genfiles
+bazel-out
+bazel-testlogs

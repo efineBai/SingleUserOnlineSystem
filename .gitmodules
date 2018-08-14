@@ -1,9 +1,6 @@
 [submodule "SingleUserOnlineClient/deps/djinni"]
 	path = SingleUserOnlineClient/deps/djinni
 	url = https://github.com/dropbox/djinni.git
-[submodule "SingleUserOnlineClient/deps/grpc"]
-	path = SingleUserOnlineClient/deps/grpc
-	url = https://github.com/grpc/grpc.git
 [submodule "SingleUserOnlineClient/deps/gyp"]
 	path = SingleUserOnlineClient/deps/gyp
 	url = https://chromium.googlesource.com/external/gyp.git
