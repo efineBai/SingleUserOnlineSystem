@@ -102,7 +102,7 @@ bool SingleUserOnlineStub::keepAliveStream(const string userName,const  string p
                     break;
                 case GlobalData::USER_LOGIN_SUCC:
                     callback->onLoginSucc();
-                    return true;
+                   
                     break;
                 default:
                     callback->onLoginOut(GlobalData::CLIENT_UNKNOWN_ERR, "connection broken");
