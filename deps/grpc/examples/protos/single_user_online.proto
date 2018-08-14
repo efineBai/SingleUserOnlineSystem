@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package singleuseronline;
+// 定义server提供的功能
+
+service SingleUserOnline{
+
+    // sign up a new account
+    rpc signUp(LoginInfo) returns (ResultInfo){};
+
+    // live-statue, stream to stream； use status to logout or login
+    rpc keepAliveStream(stream LoginInfo) returns (stream LoginInfo){};
+    // live-statue, short connection
+    rpc keepAliveShort(LoginInfo) returns (ResultInfo){};
+}
+
+// login parameters
+message LoginInfo {
+    // user id
+    string userid = 1;
+    // 用svr的公钥进行加密，登出请求该字段为空
+    string passwordEncoded = 2;
+    // 时间戳
+    string timestamp = 3;
+    // 设备标识，用于防止恶意登出
+    string deviceid = 4;
+    // 登录的状态
+    // 1:需要验证
+    // 10000:验证成功
+    // other: 验证失败
+    int32 status = 5;
+}
+
+// response type
+message ResultInfo {
+    int32 resultCode = 1;
+    string resultMsg = 2;
+}
+

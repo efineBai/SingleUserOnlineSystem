@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     UserLogin userLoginStub ;
     EditText userNameEdt;
+
     EditText userPwdEdt;
 
     @Override
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Log.d("LoginFailed", "登录成功：");
+                    Log.d("LoginSucc", "登录成功：");
                     Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_LONG).show();
                 }
             });
@@ -82,8 +83,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Log.d("LoginFailed", "登录成功：");
-                    Toast.makeText(MainActivity.this, "用户登出失败："+"ret="+retCode+" | msg="+msg, Toast.LENGTH_LONG).show();
+                    Log.d("LoginFailed", "登出成功：");
+                    Toast.makeText(MainActivity.this, "用户登出成功："+"ret="+retCode+" | msg="+msg, Toast.LENGTH_LONG).show();
                 }
             });
         }
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Log.d("LoginFailed", "用户注册成功：");
+                    Log.d("LoginSucc", "用户注册成功：");
                     Toast.makeText(MainActivity.this, "用户注册成功", Toast.LENGTH_LONG).show();
                 }
             });
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Log.d("LoginFailed", "用户注册成功：");
+                    Log.d("LoginFailed", "用户注册失败：");
                     Toast.makeText(MainActivity.this, "用户注册失败："+"ret="+retCode+" | msg="+msg, Toast.LENGTH_LONG).show();
                 }
             });

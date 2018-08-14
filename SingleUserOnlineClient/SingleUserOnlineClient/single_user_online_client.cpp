@@ -80,16 +80,23 @@ bool SingleUserOnlineStub::keepAliveStream(const string userName,const  string p
                     }
                     break;
                 case GlobalData::USER_NOT_EXIST:
+                    stream->WritesDone();
+                    stream->Finish();
                     callback->onLoginFailed(retInfo.status(), "用户不存在" );
+                    return false;
                     break;
                 case GlobalData::USER_PWD_ERROR:
+                    stream->WritesDone();
+                       stream->Finish();
                     callback->onLoginFailed(retInfo.status(), "账号或密码错误");
+                    return false;
                     break;
                 case GlobalData::USER_STATUS_CHECK_SUCC:
                     // do nothin ; 用户的心跳检查成功
                     break;
                 case GlobalData::USER_LOGIN_SUCC:
                     callback->onLoginSucc();
+                    return true;
                     break;
                 default:
                     callback->onLoginOut(GlobalData::CLIENT_UNKNOWN_ERR, "connection broken");

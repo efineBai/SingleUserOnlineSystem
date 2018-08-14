@@ -24,10 +24,11 @@ string CommTools::RsaEncodeWithSvr(const string strData){
     BIO_free_all(bio);
     
     int nLen = RSA_size(pRSAPublicKey);
-    char* pEncode = new char[nLen + 1];
+    char* pEncode = new char[nLen + 1]();
     int ret = RSA_public_encrypt(strData.length(), (const unsigned char*)strData.c_str(), (unsigned char*)pEncode, pRSAPublicKey, RSA_PKCS1_OAEP_PADDING);
     if (ret >= 0)
     {
+        LOGD("RSAEncode retlen: %d", ret);
         strRet = buff_to_hexstring(pEncode, ret);
     }
     delete[] pEncode;

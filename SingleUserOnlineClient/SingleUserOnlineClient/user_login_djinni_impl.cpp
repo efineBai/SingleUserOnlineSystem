@@ -36,10 +36,10 @@ using std::endl;
  * 注册用户时，需要传递用户的密码，这时需要用服务端的publickey 进行加密
  */
 namespace UserLogin {
-
+    string srvaddr = "10.70.81.24:3001";
 int32_t UserLoginImpl::sign_up(const std::string &user_name, const std::string &pwd, const std::shared_ptr<LoginStatusCallback> &callback){
-    LOGD("user signup called in cpp1");
-    std::shared_ptr<Channel> channel = grpc::CreateChannel("10.70.81.18:3001", grpc::InsecureChannelCredentials());
+    LOGD("user signup called in cpp1 %s", pwd.c_str());
+    std::shared_ptr<Channel> channel = grpc::CreateChannel(srvaddr, grpc::InsecureChannelCredentials());
     if(channel == nullptr) {
         LOGD("channel create error");
     }
@@ -55,10 +55,10 @@ int32_t UserLoginImpl::sign_up(const std::string &user_name, const std::string &
 }
 
 /*
- * 登录时，与后台通信不需要用密码，使用pwd + timestamp 并进行hash
+ * 登录时，与后台通信不需要用密码，使用rsa(h(pwd)+ts)
  */
 int32_t UserLoginImpl::login(const std::string & user_name, const std::string & pwd, const std::shared_ptr<LoginStatusCallback> & callback){
-     LOGD("user login called in cpp1");
+     LOGD("user login called in cpp1 %s", pwd.c_str());
     if(user_name.empty() || pwd.empty()) {
         if(callback != nullptr) {
             callback->onLoginFailed(GlobalData::CLIENT_USER_LOGIN, "username or pwd is empty");
@@ -66,17 +66,18 @@ int32_t UserLoginImpl::login(const std::string & user_name, const std::string & 
         }
         return -1;
     }
-    std::shared_ptr<Channel> channel = grpc::CreateChannel("10.70.81.18:3001", grpc::InsecureChannelCredentials());
+    std::shared_ptr<Channel> channel = grpc::CreateChannel(srvaddr, grpc::InsecureChannelCredentials());
     string db;
     SingleUserOnlineStub stub(channel, db);
     
     std::time_t t = std::time(0);
     string ts = std::to_string(t);
-    string p = pwd + ts;
+    string p = pwd;
     p = CommTools::getMD5(p);
-    
+    p += ts;
+    p = CommTools::RsaEncodeWithSvr(p);
     //string hex_p = CommTools::buff_to_hexstring(p.c_str(), (int)std::strlen(p.c_str()));
-    LOGD("user pwd after hash: %s", p.c_str());
+    LOGD("user pwd after hash add salt rsa: %s", p.c_str());
     stub.keepAliveStream(user_name, p, ts, callback);
     return -1;
 }
