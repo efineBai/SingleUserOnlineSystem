@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		33F5EB3621217EC50087CA69 /* libgrpc++_reflection.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB2521217E920087CA69 /* libgrpc++_reflection.a */; };
+		33F5EB3721217EC50087CA69 /* libgpr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB2621217E960087CA69 /* libgpr.a */; };
+		33F5EB3821217EC50087CA69 /* libgrpc++_core_stats.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB2721217E990087CA69 /* libgrpc++_core_stats.a */; };
+		33F5EB3921217EC50087CA69 /* libgrpc++_error_details.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB2821217E9C0087CA69 /* libgrpc++_error_details.a */; };
+		33F5EB3A21217EC50087CA69 /* libmysqlclient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB2921217E9F0087CA69 /* libmysqlclient.a */; };
+		33F5EB3B21217EC50087CA69 /* libgrpc_unsecure.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB2A21217EA20087CA69 /* libgrpc_unsecure.a */; };
+		33F5EB3C21217EC50087CA69 /* libgrpc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB2B21217EA50087CA69 /* libgrpc.a */; };
+		33F5EB3D21217EC50087CA69 /* libgrpc++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB2C21217EA80087CA69 /* libgrpc++.a */; };
+		33F5EB3E21217EC50087CA69 /* libgrpc++_unsecure.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB2D21217EAB0087CA69 /* libgrpc++_unsecure.a */; };
+		33F5EB3F21217EC50087CA69 /* libgrpc++_cronet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB2E21217EAF0087CA69 /* libgrpc++_cronet.a */; };
+		33F5EB4021217EC50087CA69 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB2F21217EB20087CA69 /* libcrypto.a */; };
+		33F5EB4121217EC50087CA69 /* libares.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB3021217EB50087CA69 /* libares.a */; };
+		33F5EB4221217EC50087CA69 /* libgrpcpp_channelz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB3121217EB80087CA69 /* libgrpcpp_channelz.a */; };
+		33F5EB4321217EC50087CA69 /* libgrpc_plugin_support.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB3221217EBB0087CA69 /* libgrpc_plugin_support.a */; };
+		33F5EB4421217EC50087CA69 /* libgflags.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB3321217EBF0087CA69 /* libgflags.a */; };
+		33F5EB4521217EC50087CA69 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB3421217EC20087CA69 /* libssl.a */; };
+		33F5EB4621217EC50087CA69 /* libgrpc_cronet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB3521217EC50087CA69 /* libgrpc_cronet.a */; };
+		33F5EB4821217F310087CA69 /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB4721217F300087CA69 /* libprotobuf.a */; };
+		33F5EB4A21227EA40087CA69 /* GlobalData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33F5EB4921227EA40087CA69 /* GlobalData.cpp */; };
+		33F652C9211C46C800A3BED0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33F652C8211C46C800A3BED0 /* main.cpp */; };
+		33F652D6211C588B00A3BED0 /* CommTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33F652D4211C588B00A3BED0 /* CommTools.cpp */; };
+		33F652D9211C58AC00A3BED0 /* SingleUserDbOperation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33F652D7211C58AC00A3BED0 /* SingleUserDbOperation.cpp */; };
+		33F652DC211C58E000A3BED0 /* SingleUserOnlineServiceImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33F652DA211C58E000A3BED0 /* SingleUserOnlineServiceImpl.cpp */; };
+		33F652E1211C64D800A3BED0 /* single_user_online.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 33F652DD211C64D700A3BED0 /* single_user_online.pb.cc */; };
+		33F652E2211C64D800A3BED0 /* single_user_online.grpc.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 33F652DF211C64D800A3BED0 /* single_user_online.grpc.pb.cc */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		33F652C3211C46C800A3BED0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		33B288C6212003DB000AB62C /* GlobalData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GlobalData.hpp; sourceTree = "<group>"; };
+		33F5EB2521217E920087CA69 /* libgrpc++_reflection.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libgrpc++_reflection.a"; sourceTree = "<group>"; };
+		33F5EB2621217E960087CA69 /* libgpr.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgpr.a; sourceTree = "<group>"; };
+		33F5EB2721217E990087CA69 /* libgrpc++_core_stats.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libgrpc++_core_stats.a"; sourceTree = "<group>"; };
+		33F5EB2821217E9C0087CA69 /* libgrpc++_error_details.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libgrpc++_error_details.a"; sourceTree = "<group>"; };
+		33F5EB2921217E9F0087CA69 /* libmysqlclient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmysqlclient.a; sourceTree = "<group>"; };
+		33F5EB2A21217EA20087CA69 /* libgrpc_unsecure.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgrpc_unsecure.a; sourceTree = "<group>"; };
+		33F5EB2B21217EA50087CA69 /* libgrpc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgrpc.a; sourceTree = "<group>"; };
+		33F5EB2C21217EA80087CA69 /* libgrpc++.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libgrpc++.a"; sourceTree = "<group>"; };
+		33F5EB2D21217EAB0087CA69 /* libgrpc++_unsecure.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libgrpc++_unsecure.a"; sourceTree = "<group>"; };
+		33F5EB2E21217EAF0087CA69 /* libgrpc++_cronet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libgrpc++_cronet.a"; sourceTree = "<group>"; };
+		33F5EB2F21217EB20087CA69 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		33F5EB3021217EB50087CA69 /* libares.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libares.a; sourceTree = "<group>"; };
+		33F5EB3121217EB80087CA69 /* libgrpcpp_channelz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgrpcpp_channelz.a; sourceTree = "<group>"; };
+		33F5EB3221217EBB0087CA69 /* libgrpc_plugin_support.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgrpc_plugin_support.a; sourceTree = "<group>"; };
+		33F5EB3321217EBF0087CA69 /* libgflags.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgflags.a; sourceTree = "<group>"; };
+		33F5EB3421217EC20087CA69 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		33F5EB3521217EC50087CA69 /* libgrpc_cronet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgrpc_cronet.a; sourceTree = "<group>"; };
+		33F5EB4721217F300087CA69 /* libprotobuf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libprotobuf.a; sourceTree = "<group>"; };
+		33F5EB4921227EA40087CA69 /* GlobalData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GlobalData.cpp; sourceTree = "<group>"; };
+		33F652C5211C46C800A3BED0 /* SingleUserOnlineSvrCPP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SingleUserOnlineSvrCPP; sourceTree = BUILT_PRODUCTS_DIR; };
+		33F652C8211C46C800A3BED0 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		33F652D4211C588B00A3BED0 /* CommTools.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CommTools.cpp; sourceTree = "<group>"; };
+		33F652D5211C588B00A3BED0 /* CommTools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CommTools.hpp; sourceTree = "<group>"; };
+		33F652D7211C58AC00A3BED0 /* SingleUserDbOperation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SingleUserDbOperation.cpp; sourceTree = "<group>"; };
+		33F652D8211C58AC00A3BED0 /* SingleUserDbOperation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SingleUserDbOperation.hpp; sourceTree = "<group>"; };
+		33F652DA211C58E000A3BED0 /* SingleUserOnlineServiceImpl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SingleUserOnlineServiceImpl.cpp; sourceTree = "<group>"; };
+		33F652DD211C64D700A3BED0 /* single_user_online.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = single_user_online.pb.cc; sourceTree = "<group>"; };
+		33F652DE211C64D700A3BED0 /* single_user_online.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = single_user_online.pb.h; sourceTree = "<group>"; };
+		33F652DF211C64D800A3BED0 /* single_user_online.grpc.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = single_user_online.grpc.pb.cc; sourceTree = "<group>"; };
+		33F652E0211C64D800A3BED0 /* single_user_online.grpc.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = single_user_online.grpc.pb.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		33F652C2211C46C800A3BED0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33F5EB4521217EC50087CA69 /* libssl.a in Frameworks */,
+				33F5EB3A21217EC50087CA69 /* libmysqlclient.a in Frameworks */,
+				33F5EB3821217EC50087CA69 /* libgrpc++_core_stats.a in Frameworks */,
+				33F5EB4121217EC50087CA69 /* libares.a in Frameworks */,
+				33F5EB3C21217EC50087CA69 /* libgrpc.a in Frameworks */,
+				33F5EB3D21217EC50087CA69 /* libgrpc++.a in Frameworks */,
+				33F5EB3621217EC50087CA69 /* libgrpc++_reflection.a in Frameworks */,
+				33F5EB4321217EC50087CA69 /* libgrpc_plugin_support.a in Frameworks */,
+				33F5EB3721217EC50087CA69 /* libgpr.a in Frameworks */,
+				33F5EB4421217EC50087CA69 /* libgflags.a in Frameworks */,
+				33F5EB4821217F310087CA69 /* libprotobuf.a in Frameworks */,
+				33F5EB4621217EC50087CA69 /* libgrpc_cronet.a in Frameworks */,
+				33F5EB4021217EC50087CA69 /* libcrypto.a in Frameworks */,
+				33F5EB3F21217EC50087CA69 /* libgrpc++_cronet.a in Frameworks */,
+				33F5EB3921217EC50087CA69 /* libgrpc++_error_details.a in Frameworks */,
+				33F5EB4221217EC50087CA69 /* libgrpcpp_channelz.a in Frameworks */,
+				33F5EB3B21217EC50087CA69 /* libgrpc_unsecure.a in Frameworks */,
+				33F5EB3E21217EC50087CA69 /* libgrpc++_unsecure.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		33F652BC211C46C800A3BED0 = {
+			isa = PBXGroup;
+			children = (
+				33F652C7211C46C800A3BED0 /* SingleUserOnlineSvrCPP */,
+				33F652C6211C46C800A3BED0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		33F652C6211C46C800A3BED0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				33F652C5211C46C800A3BED0 /* SingleUserOnlineSvrCPP */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		33F652C7211C46C800A3BED0 /* SingleUserOnlineSvrCPP */ = {
+			isa = PBXGroup;
+			children = (
+				33F5EB3021217EB50087CA69 /* libares.a */,
+				33F5EB2F21217EB20087CA69 /* libcrypto.a */,
+				33F5EB3321217EBF0087CA69 /* libgflags.a */,
+				33F5EB4721217F300087CA69 /* libprotobuf.a */,
+				33F5EB2621217E960087CA69 /* libgpr.a */,
+				33F5EB3521217EC50087CA69 /* libgrpc_cronet.a */,
+				33F5EB3221217EBB0087CA69 /* libgrpc_plugin_support.a */,
+				33F5EB2A21217EA20087CA69 /* libgrpc_unsecure.a */,
+				33F5EB2B21217EA50087CA69 /* libgrpc.a */,
+				33F5EB2721217E990087CA69 /* libgrpc++_core_stats.a */,
+				33F5EB2E21217EAF0087CA69 /* libgrpc++_cronet.a */,
+				33F5EB2821217E9C0087CA69 /* libgrpc++_error_details.a */,
+				33F5EB2521217E920087CA69 /* libgrpc++_reflection.a */,
+				33F5EB2D21217EAB0087CA69 /* libgrpc++_unsecure.a */,
+				33F5EB2C21217EA80087CA69 /* libgrpc++.a */,
+				33F5EB3121217EB80087CA69 /* libgrpcpp_channelz.a */,
+				33F5EB2921217E9F0087CA69 /* libmysqlclient.a */,
+				33F5EB3421217EC20087CA69 /* libssl.a */,
+				33F652D3211C586D00A3BED0 /* tools */,
+				33F652D2211C584B00A3BED0 /* db_operation */,
+				33F652D1211C582F00A3BED0 /* grpc_gen */,
+				33F652C8211C46C800A3BED0 /* main.cpp */,
+				33F652DA211C58E000A3BED0 /* SingleUserOnlineServiceImpl.cpp */,
+				33B288C6212003DB000AB62C /* GlobalData.hpp */,
+				33F5EB4921227EA40087CA69 /* GlobalData.cpp */,
+			);
+			path = SingleUserOnlineSvrCPP;
+			sourceTree = "<group>";
+		};
+		33F652D1211C582F00A3BED0 /* grpc_gen */ = {
+			isa = PBXGroup;
+			children = (
+				33F652DF211C64D800A3BED0 /* single_user_online.grpc.pb.cc */,
+				33F652E0211C64D800A3BED0 /* single_user_online.grpc.pb.h */,
+				33F652DD211C64D700A3BED0 /* single_user_online.pb.cc */,
+				33F652DE211C64D700A3BED0 /* single_user_online.pb.h */,
+			);
+			path = grpc_gen;
+			sourceTree = "<group>";
+		};
+		33F652D2211C584B00A3BED0 /* db_operation */ = {
+			isa = PBXGroup;
+			children = (
+				33F652D7211C58AC00A3BED0 /* SingleUserDbOperation.cpp */,
+				33F652D8211C58AC00A3BED0 /* SingleUserDbOperation.hpp */,
+			);
+			path = db_operation;
+			sourceTree = "<group>";
+		};
+		33F652D3211C586D00A3BED0 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				33F652D4211C588B00A3BED0 /* CommTools.cpp */,
+				33F652D5211C588B00A3BED0 /* CommTools.hpp */,
+			);
+			path = tools;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		33F652C4211C46C800A3BED0 /* SingleUserOnlineSvrCPP */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33F652CC211C46C800A3BED0 /* Build configuration list for PBXNativeTarget "SingleUserOnlineSvrCPP" */;
+			buildPhases = (
+				33F652C1211C46C800A3BED0 /* Sources */,
+				33F652C2211C46C800A3BED0 /* Frameworks */,
+				33F652C3211C46C800A3BED0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SingleUserOnlineSvrCPP;
+			productName = SingleUserOnlineSvrCPP;
+			productReference = 33F652C5211C46C800A3BED0 /* SingleUserOnlineSvrCPP */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		33F652BD211C46C800A3BED0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = castlebai;
+				TargetAttributes = {
+					33F652C4211C46C800A3BED0 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 33F652C0211C46C800A3BED0 /* Build configuration list for PBXProject "SingleUserOnlineSvrCPP" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 33F652BC211C46C800A3BED0;
+			productRefGroup = 33F652C6211C46C800A3BED0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				33F652C4211C46C800A3BED0 /* SingleUserOnlineSvrCPP */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		33F652C1211C46C800A3BED0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33F652D9211C58AC00A3BED0 /* SingleUserDbOperation.cpp in Sources */,
+				33F652D6211C588B00A3BED0 /* CommTools.cpp in Sources */,
+				33F5EB4A21227EA40087CA69 /* GlobalData.cpp in Sources */,
+				33F652C9211C46C800A3BED0 /* main.cpp in Sources */,
+				33F652E2211C64D800A3BED0 /* single_user_online.grpc.pb.cc in Sources */,
+				33F652DC211C58E000A3BED0 /* SingleUserOnlineServiceImpl.cpp in Sources */,
+				33F652E1211C64D800A3BED0 /* single_user_online.pb.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		33F652CA211C46C800A3BED0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		33F652CB211C46C800A3BED0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		33F652CD211C46C800A3BED0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../..//include",
+					/usr/local/include/mysql,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SingleUserOnlineSvrCPP",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SYSTEM_HEADER_SEARCH_PATHS[arch=*]" = "";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
+			};
+			name = Debug;
+		};
+		33F652CE211C46C800A3BED0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../..//include",
+					/usr/local/include/mysql,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SingleUserOnlineSvrCPP",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		33F652C0211C46C800A3BED0 /* Build configuration list for PBXProject "SingleUserOnlineSvrCPP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33F652CA211C46C800A3BED0 /* Debug */,
+				33F652CB211C46C800A3BED0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33F652CC211C46C800A3BED0 /* Build configuration list for PBXNativeTarget "SingleUserOnlineSvrCPP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33F652CD211C46C800A3BED0 /* Debug */,
+				33F652CE211C46C800A3BED0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 33F652BD211C46C800A3BED0 /* Project object */;
+}

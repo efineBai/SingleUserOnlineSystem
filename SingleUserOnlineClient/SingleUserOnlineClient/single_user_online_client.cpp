@@ -44,6 +44,12 @@ bool SingleUserOnlineStub::SignUp(const string userName, const string pwd, const
 
 bool SingleUserOnlineStub::keepAliveStream(const string userName,const  string pwd, const string time_stamp, const  std::shared_ptr<LoginStatusCallback> & callback){
     ClientContext context;
+    
+    gpr_timespec timespec;
+    timespec.tv_sec = 200;//设置阻塞时间为2秒
+    timespec.tv_nsec = 0;
+    timespec.clock_type = GPR_TIMESPAN;
+    context.set_deadline(timespec);
     LoginInfo loginInfo;
     loginInfo.set_userid(userName);
     loginInfo.set_passwordencoded(pwd);
