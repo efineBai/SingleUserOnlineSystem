@@ -98,7 +98,7 @@ function keepAliveStream(call) {
                         // 之前的连接已经存在，查看status
                         var lastLoginInfo = lastUserStatus.loginInfo;
 
-                        switch (loginInfo.getStatus()) {
+                        switch (lastLoginInfo.getStatus()) {
 
                             case global.CLIENT_USER_LOGIN:
                                 console.log("old user " + lastLoginInfo.getUserid() + " start to connect");
