@@ -13,14 +13,18 @@
 
 
 新增：
-1.新增SingleUserOnlineSvrCpp
+ 1.新增SingleUserOnlineSvrCpp
   该项目为使用C++完成的grpc svr；
  2.优化了数据库中pwd的存储
+ 
  3.增加了bazel打包SvrCpp
  
  
  遗留问题：
  1.目前Android通过cmakeList完成打包，直接增量编译了grpc源码，如果系统中安装有openssl1.0.2+，则会导致boringssl无法打包进so。
     fix方法：使用grpc的so，不在使用源码编译；后面再修改
+    
  2.目前SvrCpp直接使用了编译好的grpc的相关库，后面可以尝试下做个开关；控制是从grpc源码打包或是用.a库
+ 
+ 3.目前使用的是grpc的insecure连接，系统未部署在真实服务器上
  
