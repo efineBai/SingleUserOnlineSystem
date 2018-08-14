@@ -7,6 +7,17 @@
 //
 
 #include "GlobalData.hpp"
+#include <mutex>
+
+std::mutex g_lock;
+
 namespace GlobalData{
     std::map<std::string, StreamStatus>* allUserAlive = new std::map<std::string,StreamStatus>;
+    void DeleteFromAllUser(string userid){
+        g_lock.lock();
+        if(allUserAlive->find(userid) != allUserAlive->end()){
+            allUserAlive->erase(userid);
+        }
+        g_lock.unlock();
+    }
 }

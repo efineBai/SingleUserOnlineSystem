@@ -70,7 +70,7 @@ namespace GlobalData{
     const string SALT_PWD = "pVuXAppyG4ivkmQouCaUX3mMGxYiSvn3VxBZZAly74Z";
     // 记录当前可用的请求连接
    extern std::map<string, StreamStatus>* allUserAlive;
-    
+   extern void DeleteFromAllUser(string userid);
 }
 
 

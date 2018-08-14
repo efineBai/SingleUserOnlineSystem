@@ -118,7 +118,7 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
                     
                     //当前用户登录成功
                     stream2 = stream;
-                    GlobalData::allUserAlive->erase(clientLoginInfo.userid());
+                    GlobalData::DeleteFromAllUser(clientLoginInfo.userid());//GlobalData::allUserAlive->erase(clientLoginInfo.userid());
                     StreamStatus status(stream, clientLoginInfo);
                     (*GlobalData::allUserAlive)[clientLoginInfo.userid()] = status;
                     singleuseronline::LoginInfo svrLoginInfo;
@@ -159,34 +159,44 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
     static void KickoutForbidUser(){
         while(true){
             vector<string> rules ;
+            rules.clear();
             SingleUserDBOperation::getInstance()->queryRules(rules);
             if(rules.size() > 0) {
                 //查找到了规则，进行遍历并踢出
-                std::map<string, StreamStatus>::iterator it;
-                it = GlobalData::allUserAlive->begin();
+                std::map<string, StreamStatus>::iterator it = GlobalData::allUserAlive->begin();
+                vector<string> mNeedErase;
+                mNeedErase.clear();
                 while(it != GlobalData::allUserAlive->end()){
                     string userid = it->first;
                     // 将用户名与每一条规则进行匹配
                     for (vector<string>::const_iterator iter = rules.begin(); iter != rules.end();iter++){
-                        cout<<"[rules] found:"<< *iter<<endl;
+                        cout<<"[rules] found:"<< *iter<<"size:"<<rules.size()<<endl;
                         if(std::regex_match(userid, std::regex(*iter))){
                             try{
+                                cout<<"user matched"<<endl;
                                 singleuseronline::LoginInfo lastLoginInfo;
                                 lastLoginInfo.set_userid(userid);
                                 lastLoginInfo.set_status(GlobalData::USER_LOGIN_OTHER);
-                                ::grpc::ServerReaderWriter< ::singleuseronline::LoginInfo, ::singleuseronline::LoginInfo>* lastStream = it->second.stream;
                                 (*(it->second.stream)).ServerReaderWriter::Write(lastLoginInfo);
-                                GlobalData::allUserAlive->erase(userid);
+                                mNeedErase.push_back(userid);
                                 cout<<"userid:"<<userid<<"matched:"<<*iter<<endl;
                             }catch(...){
-                                GlobalData::allUserAlive->erase(userid);
+                                GlobalData::DeleteFromAllUser(userid);//GlobalData::allUserAlive->erase(userid);
                                 std::cerr<<"crash"<<endl;
                             }
                         }
                     }
+                    cout<<"allUserAlive"<<it->first<<endl;
+                    ++it;
                 }
+                for (vector<string>::const_iterator iter = mNeedErase.begin(); iter != mNeedErase.end();iter++){
+                    if(GlobalData::allUserAlive->find(*iter) != GlobalData::allUserAlive->end()){
+                       GlobalData::DeleteFromAllUser(*iter);// GlobalData::allUserAlive->erase(*iter);
+                    }
+                }
+                
             }
-            std::this_thread::sleep_for(std::chrono::seconds(30));
+            std::this_thread::sleep_for(std::chrono::seconds(50));
         }
     }
     
