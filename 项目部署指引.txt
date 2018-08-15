@@ -17,9 +17,11 @@
 			  `user_name` varchar(64) NOT NULL,
 			  `user_pwd` varchar(256) NOT NULL,
 			  `statue` int(11) DEFAULT '0',
+			  `user_salt` varchar(32) NOT NULL,
 			  PRIMARY KEY (`user_name`),
 			  UNIQUE KEY `user_name_UNIQUE` (`user_name`)
 			) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 	2. 需要在svrCpp的db_operation/SingleUserDbOperation.cpp中修改对应的数据库名、用户名及密码等
 	3. 在工程根目录下执行bazel命令,即可启动svr
 		bazel build //SingleUserOnlineSvrCpp:single_server
