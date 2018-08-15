@@ -132,10 +132,10 @@ string CommTools::Sha256(const string str)
 
 // 用作pwd的盐，以及token
 string CommTools::generateToken(){
-//    string token;
-//    time_t t = time(NULL);
-//    token = getMD5(std::to_string(t));
-    return "1";
+    string token;
+    time_t t = time(NULL);
+    token = getMD5(std::to_string(t));
+    return token;
 }
 
 // 生成db存储的pwd
