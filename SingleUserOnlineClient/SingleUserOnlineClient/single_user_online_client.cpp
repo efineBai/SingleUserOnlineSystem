@@ -9,7 +9,7 @@
 #include <thread>
 #include "single_user_online_client.hpp"
 #include "GlobalData.hpp"
-
+#include "bcrypt.h"
 
 
 using namespace std;
@@ -110,8 +110,9 @@ bool SingleUserOnlineStub::keepAliveStream(const string userName,const  string p
                     break;
                 case GlobalData::USER_STATUS_TOKEN:
                     retInfo.passwordencoded();
-                    pwdParsed = CommTools::generateDbPwd(pwd, retInfo.passwordencoded());
-                    pwdParsed = CommTools::Sha256(pwdParsed + retInfo.deviceid());
+                    char hash[64];
+                    bcrypt_hashpw(pwd.c_str(), retInfo.passwordencoded().c_str(), hash);
+                    pwdParsed = CommTools::Sha256(string(hash) + retInfo.deviceid());
                     clientInfo.set_userid(userName);
                     clientInfo.set_passwordencoded(pwdParsed);
                     clientInfo.set_status(GlobalData::CLIENT_USER_LOGIN);

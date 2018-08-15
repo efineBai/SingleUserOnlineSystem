@@ -30,6 +30,17 @@ cc_binary(
             "SingleUserOnlineSvrCPP/GlobalData.cpp",
             "SingleUserOnlineSvrCPP/tools/CommTools.hpp",
             "SingleUserOnlineSvrCPP/tools/CommTools.cpp",
+ "SingleUserOnlineSvrCPP/bcrypt.c",
+ "SingleUserOnlineSvrCPP/bcrypt.h",
+"SingleUserOnlineSvrCPP/crypt_blowfish/crypt.h",
+"SingleUserOnlineSvrCPP/crypt_blowfish/crypt_blowfish.c",
+"SingleUserOnlineSvrCPP/crypt_blowfish/crypt_blowfish.h",
+"SingleUserOnlineSvrCPP/crypt_blowfish/crypt_gensalt.c",
+"SingleUserOnlineSvrCPP/crypt_blowfish/crypt_gensalt.h",
+"SingleUserOnlineSvrCPP/crypt_blowfish/ow-crypt.h",
+"SingleUserOnlineSvrCPP/crypt_blowfish/wrapper.c",
+"SingleUserOnlineSvrCPP/crypt_blowfish/x86.S",
+
             "SingleUserOnlineSvrCPP/libgrpc++_reflection.a",
             "SingleUserOnlineSvrCPP/libgrpc++.a",
             "SingleUserOnlineSvrCPP/libgrpc++_unsecure.a",
@@ -52,6 +63,7 @@ cc_binary(
     defines = ["BAZEL_BUILD"],
     copts = ["-I/usr/local/include",
     "-I/usr/local/include/mysql",
+    "-ISingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP/libbcrypt/bcrypt/",
    ],
     
 )

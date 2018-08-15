@@ -226,18 +226,19 @@ int main(int argc, const char * argv[]) {
 //        cout<< "insert user failed"<<endl;
 //    }
 
-    string db;
-    std::string server_address("0.0.0.0:3001");
-    SingleUserOnlineServiceImpl service;
-    ServerBuilder builder;
-    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
-    builder.RegisterService(&service);
-    std::unique_ptr<Server> server(builder.BuildAndStart());
-    std::cout << "Server listening on " << server_address << std::endl;
-    service.KickoutForbidUserLauncher();
-    server->Wait();
+//    string db;
+//    std::string server_address("0.0.0.0:3001");
+//    SingleUserOnlineServiceImpl service;
+//    ServerBuilder builder;
+//    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
+//    builder.RegisterService(&service);
+//    std::unique_ptr<Server> server(builder.BuildAndStart());
+//    std::cout << "Server listening on " << server_address << std::endl;
+//    service.KickoutForbidUserLauncher();
+//    server->Wait();
 //
-    
+    string ret = CommTools::bcrypt("123");
+    cout<<ret<<endl;
     return 0;
 }
 

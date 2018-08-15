@@ -11,6 +11,7 @@
 #include <openssl/pem.h>
 #include <openssl/md5.h>
 #include "../GlobalData.hpp"
+#include "BCrypt.hpp"
 
 string CommTools::RsaDecode(const string strData){
     std::string strRet;
@@ -39,6 +40,13 @@ string CommTools::RsaDecode(const string strData){
     delete [] content;
     delete [] pEncode;
     return strRet;
+}
+
+string CommTools::bcrypt(const string strData){
+    string ret;
+    BCrypt bcrypt;
+    ret = bcrypt.generateHash(strData);
+    return ret;
 }
 
 string CommTools::RsaEncodePwd(const string strData){

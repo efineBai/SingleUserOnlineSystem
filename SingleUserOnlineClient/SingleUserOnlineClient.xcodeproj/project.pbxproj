@@ -12,6 +12,11 @@
 		3329AB892109DB0D0062C97B /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 3329AB882109DB0D0062C97B /* Makefile */; };
 		3329AB90210A03060062C97B /* user_login_djinni_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3329AB8F210A03060062C97B /* user_login_djinni_impl.cpp */; };
 		3329AB93210DDB9D0062C97B /* CommTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3329AB91210DDB9D0062C97B /* CommTools.cpp */; };
+		33F5EBA3212435A90087CA69 /* crypt_gensalt.c in Sources */ = {isa = PBXBuildFile; fileRef = 33F5EB97212435A80087CA69 /* crypt_gensalt.c */; };
+		33F5EBA4212435A90087CA69 /* x86.S in Sources */ = {isa = PBXBuildFile; fileRef = 33F5EB9B212435A80087CA69 /* x86.S */; };
+		33F5EBA5212435A90087CA69 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 33F5EB9C212435A80087CA69 /* wrapper.c */; };
+		33F5EBA6212435A90087CA69 /* crypt_blowfish.c in Sources */ = {isa = PBXBuildFile; fileRef = 33F5EB9F212435A80087CA69 /* crypt_blowfish.c */; };
+		33F5EBA7212435A90087CA69 /* bcrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 33F5EBA2212435A90087CA69 /* bcrypt.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +48,19 @@
 		3329AB91210DDB9D0062C97B /* CommTools.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CommTools.cpp; sourceTree = "<group>"; };
 		3329AB92210DDB9D0062C97B /* CommTools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CommTools.hpp; sourceTree = "<group>"; };
 		338D9F132116E06800AE9954 /* user_login_djinni_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = user_login_djinni_impl.h; sourceTree = "<group>"; };
+		33F5EB95212435A80087CA69 /* bcrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bcrypt.h; sourceTree = "<group>"; };
+		33F5EB97212435A80087CA69 /* crypt_gensalt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypt_gensalt.c; sourceTree = "<group>"; };
+		33F5EB98212435A80087CA69 /* glibc-2.14-crypt.diff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "glibc-2.14-crypt.diff"; sourceTree = "<group>"; };
+		33F5EB99212435A80087CA69 /* glibc-2.3.6-crypt.diff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "glibc-2.3.6-crypt.diff"; sourceTree = "<group>"; };
+		33F5EB9A212435A80087CA69 /* crypt_blowfish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt_blowfish.h; sourceTree = "<group>"; };
+		33F5EB9B212435A80087CA69 /* x86.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = x86.S; sourceTree = "<group>"; };
+		33F5EB9C212435A80087CA69 /* wrapper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wrapper.c; sourceTree = "<group>"; };
+		33F5EB9D212435A80087CA69 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		33F5EB9E212435A80087CA69 /* crypt_gensalt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt_gensalt.h; sourceTree = "<group>"; };
+		33F5EB9F212435A80087CA69 /* crypt_blowfish.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypt_blowfish.c; sourceTree = "<group>"; };
+		33F5EBA0212435A80087CA69 /* ow-crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ow-crypt.h"; sourceTree = "<group>"; };
+		33F5EBA1212435A90087CA69 /* glibc-2.1.3-crypt.diff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "glibc-2.1.3-crypt.diff"; sourceTree = "<group>"; };
+		33F5EBA2212435A90087CA69 /* bcrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bcrypt.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +97,9 @@
 			children = (
 				3329AB8321096F590062C97B /* single_user_online.grpc.pb.h */,
 				3329AB8421096F590062C97B /* single_user_online.pb.h */,
+				33F5EBA2212435A90087CA69 /* bcrypt.c */,
+				33F5EB95212435A80087CA69 /* bcrypt.h */,
+				33F5EB96212435A80087CA69 /* crypt_blowfish */,
 				3329AB8D210A00D70062C97B /* login_status_callback.hpp */,
 				3329AB7E21096DB00062C97B /* single_user_online_client.cpp */,
 				3329AB8021096DB00062C97B /* single_user_online_client.hpp */,
@@ -92,6 +113,24 @@
 				338D9F132116E06800AE9954 /* user_login_djinni_impl.h */,
 			);
 			path = SingleUserOnlineClient;
+			sourceTree = "<group>";
+		};
+		33F5EB96212435A80087CA69 /* crypt_blowfish */ = {
+			isa = PBXGroup;
+			children = (
+				33F5EB97212435A80087CA69 /* crypt_gensalt.c */,
+				33F5EB98212435A80087CA69 /* glibc-2.14-crypt.diff */,
+				33F5EB99212435A80087CA69 /* glibc-2.3.6-crypt.diff */,
+				33F5EB9A212435A80087CA69 /* crypt_blowfish.h */,
+				33F5EB9B212435A80087CA69 /* x86.S */,
+				33F5EB9C212435A80087CA69 /* wrapper.c */,
+				33F5EB9D212435A80087CA69 /* crypt.h */,
+				33F5EB9E212435A80087CA69 /* crypt_gensalt.h */,
+				33F5EB9F212435A80087CA69 /* crypt_blowfish.c */,
+				33F5EBA0212435A80087CA69 /* ow-crypt.h */,
+				33F5EBA1212435A90087CA69 /* glibc-2.1.3-crypt.diff */,
+			);
+			path = crypt_blowfish;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,7 +193,12 @@
 				3329AB8121096DB00062C97B /* single_user_online_client.cpp in Sources */,
 				3329AB90210A03060062C97B /* user_login_djinni_impl.cpp in Sources */,
 				3329AB93210DDB9D0062C97B /* CommTools.cpp in Sources */,
+				33F5EBA5212435A90087CA69 /* wrapper.c in Sources */,
+				33F5EBA3212435A90087CA69 /* crypt_gensalt.c in Sources */,
+				33F5EBA7212435A90087CA69 /* bcrypt.c in Sources */,
+				33F5EBA4212435A90087CA69 /* x86.S in Sources */,
 				3329AB872109D8440062C97B /* GlobalData.cpp in Sources */,
+				33F5EBA6212435A90087CA69 /* crypt_blowfish.c in Sources */,
 				3329AB892109DB0D0062C97B /* Makefile in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

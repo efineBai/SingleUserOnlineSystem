@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5cb285d-c54b-4736-a064-e7b1c9d1d57d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient.xcodeproj/project.xcworkspace/xcuserdata/castlebai.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient.xcodeproj/project.xcworkspace/xcuserdata/castlebai.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/deps/djinni" afterPath="$PROJECT_DIR$/SingleUserOnlineClient/deps/djinni" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP.xcodeproj/project.xcworkspace/xcuserdata/castlebai.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP.xcodeproj/project.xcworkspace/xcuserdata/castlebai.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/CommTools.cpp" afterPath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/CommTools.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/CommTools.hpp" afterPath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/CommTools.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/GlobalData.hpp" afterPath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/GlobalData.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/single_user_online_client.cpp" afterPath="$PROJECT_DIR$/SingleUserOnlineClient/SingleUserOnlineClient/single_user_online_client.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP.xcodeproj/xcuserdata/castlebai.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterPath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP.xcodeproj/xcuserdata/castlebai.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP/GlobalData.cpp" afterPath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP/GlobalData.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP/GlobalData.hpp" afterPath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP/GlobalData.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP/SingleUserOnlineServiceImpl.cpp" afterPath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP/SingleUserOnlineServiceImpl.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP/db_operation/SingleUserDbOperation.cpp" afterPath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP/db_operation/SingleUserDbOperation.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP/db_operation/SingleUserDbOperation.hpp" afterPath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP/db_operation/SingleUserDbOperation.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP/tools/CommTools.cpp" afterPath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP/tools/CommTools.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP/tools/CommTools.hpp" afterPath="$PROJECT_DIR$/SingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP/tools/CommTools.hpp" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,12 +14,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="SingleUserOnlineImpl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/SingleUserOnlineImpl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
+            <state relative-caret-position="1290">
               <caret line="86" column="31" lean-forward="false" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="31" />
               <folding>
                 <marker date="1534233453658" expanded="true" signature="2680:7201" ph="{...}" />
@@ -72,7 +58,7 @@
       <file leaf-file-name="DHTML.js" pinned="false" current-in-tab="false">
         <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80036">
+            <state relative-caret-position="70620">
               <caret line="4708" column="0" lean-forward="false" selection-start-line="4708" selection-start-column="0" selection-end-line="4708" selection-end-column="0" />
               <folding />
             </state>
@@ -82,7 +68,7 @@
       <file leaf-file-name="greeter_server.js" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Downloads/grpc-master 4/examples/node/dynamic_codegen/greeter_server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
+            <state relative-caret-position="285">
               <caret line="35" column="21" lean-forward="false" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
               <folding />
             </state>
@@ -102,7 +88,7 @@
       <file leaf-file-name="single_user_online_grpc_pb.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/single_user_online_grpc_pb.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
+            <state relative-caret-position="435">
               <caret line="29" column="30" lean-forward="false" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
               <folding />
             </state>
@@ -112,7 +98,7 @@
       <file leaf-file-name="CommTools.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/CommTools.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
+            <state relative-caret-position="210">
               <caret line="14" column="29" lean-forward="false" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
               <folding />
             </state>
@@ -122,8 +108,8 @@
       <file leaf-file-name="GlobalConf.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/GlobalConf.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="38" column="8" lean-forward="false" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
+            <state relative-caret-position="495">
+              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -132,7 +118,7 @@
       <file leaf-file-name="single_user_online_pb.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/single_user_online_pb.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7038">
+            <state relative-caret-position="6210">
               <caret line="414" column="0" lean-forward="false" selection-start-line="414" selection-start-column="0" selection-end-line="414" selection-end-column="0" />
               <folding />
             </state>
@@ -142,7 +128,7 @@
       <file leaf-file-name="DBOperations.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/DBOperations.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="884">
+            <state relative-caret-position="780">
               <caret line="52" column="37" lean-forward="false" selection-start-line="49" selection-start-column="13" selection-end-line="52" selection-end-column="37" />
               <folding />
             </state>
@@ -228,27 +214,7 @@
     <panes>
       <pane id="Scope" />
       <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SingleUserOnline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SingleUserOnline" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SingleUserOnline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SingleUserOnline" type="462c0819:PsiDirectoryNode" />
-              <item name="protos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SingleUserOnline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SingleUserOnline" type="462c0819:PsiDirectoryNode" />
-              <item name="SingleUserOnlineServer" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -320,18 +286,21 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1057" extended-state="0" />
+    <frame x="0" y="23" width="1920" height="1057" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25171143" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25452608" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969216" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3247269" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969216" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3247269" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48361468" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39920557" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39920557" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -342,7 +311,7 @@
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="processedProjectFiles" value="true" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -762,7 +731,7 @@
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80036">
+        <state relative-caret-position="70620">
           <caret line="4708" column="0" lean-forward="false" selection-start-line="4708" selection-start-column="0" selection-end-line="4708" selection-end-column="0" />
           <folding />
         </state>
@@ -770,7 +739,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/single_user_online_grpc_pb.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
+        <state relative-caret-position="435">
           <caret line="29" column="30" lean-forward="false" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
           <folding />
         </state>
@@ -778,7 +747,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/single_user_online_pb.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7038">
+        <state relative-caret-position="6210">
           <caret line="414" column="0" lean-forward="false" selection-start-line="414" selection-start-column="0" selection-end-line="414" selection-end-column="0" />
           <folding />
         </state>
@@ -786,7 +755,7 @@
     </entry>
     <entry file="file://$USER_HOME$/Downloads/grpc-master 4/examples/node/dynamic_codegen/greeter_server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
+        <state relative-caret-position="285">
           <caret line="35" column="21" lean-forward="false" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
           <folding />
         </state>
@@ -802,7 +771,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/DBOperations.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
+        <state relative-caret-position="780">
           <caret line="52" column="37" lean-forward="false" selection-start-line="49" selection-start-column="13" selection-end-line="52" selection-end-column="37" />
           <folding />
         </state>
@@ -817,7 +786,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/CommTools.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
+        <state relative-caret-position="210">
           <caret line="14" column="29" lean-forward="false" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
           <folding />
         </state>
@@ -825,7 +794,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/SingleUserOnlineImpl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
+        <state relative-caret-position="1290">
           <caret line="86" column="31" lean-forward="false" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="31" />
           <folding>
             <marker date="1534233453658" expanded="true" signature="2680:7201" ph="{...}" />
@@ -861,8 +830,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SingleUserOnlineServer/GlobalConf.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="38" column="8" lean-forward="false" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
+        <state relative-caret-position="495">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding />
         </state>
       </provider>

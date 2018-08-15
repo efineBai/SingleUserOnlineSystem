@@ -5,6 +5,8 @@
 //  Created by castlebai on 9/8/2018.
 //  Copyright © 2018 castlebai. All rights reserved.
 //
+
+#define BCRYPT_HASHSIZE 64
 #include "single_user_online.grpc.pb.h"
 #include <grpc/grpc.h>
 #include <grpcpp/server.h>
@@ -18,6 +20,8 @@
 #include <chrono>
 #include "tools/CommTools.hpp"
 #include <unistd.h>
+#include <time.h>
+#include "bcrypt.h"
 
 using grpc::Server;
 using grpc::ServerBuilder;
@@ -52,8 +56,11 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
             response->set_resultmsg("pwd is empty");
             return Status::OK;
         }
-        string salt = CommTools::generateToken();
-        if(!SingleUserDBOperation::getInstance()->insertNewUser(request->userid(), CommTools::generateDbPwd(pwd, salt), salt)){
+        char salt[64];
+        char hash[64];
+        bcrypt_gensalt(12, salt);
+        bcrypt_hashpw(pwd.c_str(), salt, hash);
+        if(!SingleUserDBOperation::getInstance()->insertNewUser(request->userid(), hash, salt)){
             cout<< "insert user succ"<<endl;
             response->set_resultcode(GlobalData::USER_SIGNUP_SUCC);
             response->set_resultmsg("create user succ");
@@ -170,71 +177,7 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
                 }
             }
            
-//            string dbPwd;
-//            if(!SingleUserDBOperation::getInstance()->queryUserPwd(clientLoginInfo.userid(), dbPwd)){
-//                cout<< "query user succ"<< dbPwd<<endl;
-////                dbPwd = dbPwd + clientLoginInfo.timestamp();
-////                dbPwd = CommTools::getMD5(dbPwd);
-//                string clientpwd = clientLoginInfo.passwordencoded();
-//                clientpwd = CommTools::RsaDecode(clientpwd);
-//                if(clientpwd.length() > 10) {
-//                    // 先得到md5值
-//                    cout<<"clientpwd"<<clientpwd<<endl;
-//                    clientpwd = clientpwd.substr(0, clientpwd.length() -10);
-//                    cout<<"clientpwd"<<clientpwd<<endl;
-//                    clientpwd = CommTools::getMD5(clientpwd + GlobalData::SALT_PWD);
-//                } else {
-//                    // 密码不对
-//                    singleuseronline::LoginInfo svrLoginInfo;
-//                    svrLoginInfo.set_userid(clientLoginInfo.userid());
-//                    svrLoginInfo.set_status(GlobalData::USER_PWD_ERROR);
-//                    (*stream).ServerReaderWriter::Write(svrLoginInfo);
-//
-//                }
-//                if(dbPwd.compare(clientpwd) == 0){
-//                    // 密码匹配成功,先查询是否有已经登陆的该用户
-//                    std::map<string, StreamStatus>::const_iterator it;
-//                    it = GlobalData::allUserAlive->find(clientLoginInfo.userid());
-//                    if(it != GlobalData::allUserAlive->end()){
-//                        //之前该用户已经登录过；则先将之前的登录退出
-//                        singleuseronline::LoginInfo logininfo;
-//                        logininfo.set_userid(clientLoginInfo.userid());
-//                        logininfo.set_status(GlobalData::USER_LOGIN_OTHER);
-//                        ::grpc::ServerReaderWriter< ::singleuseronline::LoginInfo, ::singleuseronline::LoginInfo>* lastStream = it->second.stream;
-//                        cout<<"last stream:"<<it->second.stream<<"; new stream"<< stream<<endl;
-//                        int ret = it->second.stream->ServerReaderWriter::Write(logininfo);
-//                        cout<<"lastStream logout :"<<ret<<endl;
-//
-//                    }
-//
-//                    //当前用户登录成功
-//                    stream2 = stream;
-//                    GlobalData::DeleteFromAllUser(clientLoginInfo.userid());//GlobalData::allUserAlive->erase(clientLoginInfo.userid());
-//                    StreamStatus status(stream, clientLoginInfo);
-//                    (*GlobalData::allUserAlive)[clientLoginInfo.userid()] = status;
-//                    singleuseronline::LoginInfo svrLoginInfo;
-//                    svrLoginInfo.set_userid(clientLoginInfo.userid());
-//                    svrLoginInfo.set_status(GlobalData::USER_LOGIN_SUCC);
-//                    (*stream).ServerReaderWriter::Write(svrLoginInfo);
-//
-//                    continue;
-//
-//                } else {
-//                    //密码不正确; 提示错误
-//                    singleuseronline::LoginInfo svrLoginInfo;
-//                    svrLoginInfo.set_userid(clientLoginInfo.userid());
-//                    svrLoginInfo.set_status(GlobalData::USER_PWD_ERROR);
-//                    (*stream).ServerReaderWriter::Write(svrLoginInfo);
-//                   continue;
-//                }
-//            } else {
-//                // 当前用户不存在
-//                singleuseronline::LoginInfo svrLoginInfo;
-//                svrLoginInfo.set_userid(clientLoginInfo.userid());
-//                svrLoginInfo.set_status(GlobalData::USER_NOT_EXIST);
-//                (*stream).ServerReaderWriter::Write(svrLoginInfo);
-//                continue;
-//            }
+
         } //while()
        
         return Status::OK;
@@ -302,20 +245,20 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
 
 
 int main(int argc, const char * argv[]) {
-    // 创建新用户
+//    // 创建新用户
 //    if(!SingleUserDBOperation::getInstance()->insertNewUser("123", "123")){
 //        cout<< "insert user succ"<<endl;
 //    } else {
 //        cout<< "insert user failed"<<endl;
 //    }
-    //查询用户密码
+////    查询用户密码
 //    string pwd;
 //    if(!SingleUserDBOperation::getInstance()->queryUserPwd("123", pwd)){
 //        cout<< "query user succ"<< pwd<<endl;
 //    } else {
 //        cout<< "insert user failed"<<endl;
 //    }
-    // 获取用户踢出规则
+////     获取用户踢出规则
 //    std::vector<string> rules;
 //    if(!SingleUserDBOperation::getInstance()->queryRules(rules)){
 //        cout<< "query user forbid rules succ :"<< rules.size()<<endl;
@@ -338,7 +281,19 @@ int main(int argc, const char * argv[]) {
     std::cout << "Server listening on " << server_address << std::endl;
     service.KickoutForbidUserLauncher();
     server->Wait();
+
+//    char salt[64];
+//    char hash[64];
+//    int ret;
+//     ret = bcrypt_gensalt(12, salt);
+//    for(int i=0;i <5;i++){
 //
+//
+//    cout<<salt<<endl;
+//    ret = bcrypt_hashpw("asdfasdfa", salt, hash);
+//    cout<<hash<<endl;
+//        cout<<"--------------"<<endl;
+//    }
     
     return 0;
 }

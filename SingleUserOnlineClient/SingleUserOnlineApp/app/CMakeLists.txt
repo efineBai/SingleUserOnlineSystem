@@ -79,13 +79,19 @@ file(GLOB SOURCES
     src/main/cpp/src/*.h
     ../../SingleUserOnlineClient/*.hpp
     ../../SingleUserOnlineClient/*.cpp
+    ../../SingleUserOnlineClient/*.h
+    ../../SingleUserOnlineClient/*.c
     ../../generated-src/cpp/*.hpp
     ../../generated-src/jni/*.cpp
     ../../generated-src/jni/*.hpp
+    ../../SingleUserOnlineClient/crypt_blowfish/*.h
+    ../../SingleUserOnlineClient/crypt_blowfish/*.c
+    ../../SingleUserOnlineClient/crypt_blowfish/*.S
     ../../deps/djinni/support-lib/jni/*.cpp
     )
 include_directories(
     ../../../deps/grpc/third_party/boringssl/include
+    ../../SingleUserOnlineClient/crypt_blowfish/
     ../../deps/djinni/support-lib/jni
     ../../generated-src/cpp/*.hpp
     ../../generated-src/jni/*.hpp

@@ -26,6 +26,11 @@
 		33F5EB4621217EC50087CA69 /* libgrpc_cronet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB3521217EC50087CA69 /* libgrpc_cronet.a */; };
 		33F5EB4821217F310087CA69 /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F5EB4721217F300087CA69 /* libprotobuf.a */; };
 		33F5EB4A21227EA40087CA69 /* GlobalData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33F5EB4921227EA40087CA69 /* GlobalData.cpp */; };
+		33F5EB8E21242EA90087CA69 /* crypt_gensalt.c in Sources */ = {isa = PBXBuildFile; fileRef = 33F5EB8321242EA90087CA69 /* crypt_gensalt.c */; };
+		33F5EB8F21242EA90087CA69 /* x86.S in Sources */ = {isa = PBXBuildFile; fileRef = 33F5EB8721242EA90087CA69 /* x86.S */; };
+		33F5EB9021242EA90087CA69 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 33F5EB8821242EA90087CA69 /* wrapper.c */; };
+		33F5EB9121242EA90087CA69 /* crypt_blowfish.c in Sources */ = {isa = PBXBuildFile; fileRef = 33F5EB8B21242EA90087CA69 /* crypt_blowfish.c */; };
+		33F5EB9421242EB30087CA69 /* bcrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 33F5EB9321242EB30087CA69 /* bcrypt.c */; };
 		33F652C9211C46C800A3BED0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33F652C8211C46C800A3BED0 /* main.cpp */; };
 		33F652D6211C588B00A3BED0 /* CommTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33F652D4211C588B00A3BED0 /* CommTools.cpp */; };
 		33F652D9211C58AC00A3BED0 /* SingleUserDbOperation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33F652D7211C58AC00A3BED0 /* SingleUserDbOperation.cpp */; };
@@ -67,6 +72,19 @@
 		33F5EB3521217EC50087CA69 /* libgrpc_cronet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgrpc_cronet.a; sourceTree = "<group>"; };
 		33F5EB4721217F300087CA69 /* libprotobuf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libprotobuf.a; sourceTree = "<group>"; };
 		33F5EB4921227EA40087CA69 /* GlobalData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GlobalData.cpp; sourceTree = "<group>"; };
+		33F5EB8321242EA90087CA69 /* crypt_gensalt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypt_gensalt.c; sourceTree = "<group>"; };
+		33F5EB8421242EA90087CA69 /* glibc-2.14-crypt.diff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "glibc-2.14-crypt.diff"; sourceTree = "<group>"; };
+		33F5EB8521242EA90087CA69 /* glibc-2.3.6-crypt.diff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "glibc-2.3.6-crypt.diff"; sourceTree = "<group>"; };
+		33F5EB8621242EA90087CA69 /* crypt_blowfish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt_blowfish.h; sourceTree = "<group>"; };
+		33F5EB8721242EA90087CA69 /* x86.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = x86.S; sourceTree = "<group>"; };
+		33F5EB8821242EA90087CA69 /* wrapper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wrapper.c; sourceTree = "<group>"; };
+		33F5EB8921242EA90087CA69 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		33F5EB8A21242EA90087CA69 /* crypt_gensalt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt_gensalt.h; sourceTree = "<group>"; };
+		33F5EB8B21242EA90087CA69 /* crypt_blowfish.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypt_blowfish.c; sourceTree = "<group>"; };
+		33F5EB8C21242EA90087CA69 /* ow-crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ow-crypt.h"; sourceTree = "<group>"; };
+		33F5EB8D21242EA90087CA69 /* glibc-2.1.3-crypt.diff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "glibc-2.1.3-crypt.diff"; sourceTree = "<group>"; };
+		33F5EB9221242EB20087CA69 /* bcrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bcrypt.h; sourceTree = "<group>"; };
+		33F5EB9321242EB30087CA69 /* bcrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bcrypt.c; sourceTree = "<group>"; };
 		33F652C5211C46C800A3BED0 /* SingleUserOnlineSvrCPP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SingleUserOnlineSvrCPP; sourceTree = BUILT_PRODUCTS_DIR; };
 		33F652C8211C46C800A3BED0 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		33F652D4211C588B00A3BED0 /* CommTools.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CommTools.cpp; sourceTree = "<group>"; };
@@ -109,6 +127,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		33F5EB8221242EA90087CA69 /* crypt_blowfish */ = {
+			isa = PBXGroup;
+			children = (
+				33F5EB8321242EA90087CA69 /* crypt_gensalt.c */,
+				33F5EB8421242EA90087CA69 /* glibc-2.14-crypt.diff */,
+				33F5EB8521242EA90087CA69 /* glibc-2.3.6-crypt.diff */,
+				33F5EB8621242EA90087CA69 /* crypt_blowfish.h */,
+				33F5EB8721242EA90087CA69 /* x86.S */,
+				33F5EB8821242EA90087CA69 /* wrapper.c */,
+				33F5EB8921242EA90087CA69 /* crypt.h */,
+				33F5EB8A21242EA90087CA69 /* crypt_gensalt.h */,
+				33F5EB8B21242EA90087CA69 /* crypt_blowfish.c */,
+				33F5EB8C21242EA90087CA69 /* ow-crypt.h */,
+				33F5EB8D21242EA90087CA69 /* glibc-2.1.3-crypt.diff */,
+			);
+			path = crypt_blowfish;
+			sourceTree = "<group>";
+		};
 		33F652BC211C46C800A3BED0 = {
 			isa = PBXGroup;
 			children = (
@@ -129,7 +165,10 @@
 			isa = PBXGroup;
 			children = (
 				33F5EB3021217EB50087CA69 /* libares.a */,
+				33F5EB9321242EB30087CA69 /* bcrypt.c */,
+				33F5EB9221242EB20087CA69 /* bcrypt.h */,
 				33F5EB2F21217EB20087CA69 /* libcrypto.a */,
+				33F5EB8221242EA90087CA69 /* crypt_blowfish */,
 				33F5EB3321217EBF0087CA69 /* libgflags.a */,
 				33F5EB4721217F300087CA69 /* libprotobuf.a */,
 				33F5EB2621217E960087CA69 /* libgpr.a */,
@@ -244,12 +283,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				33F652D9211C58AC00A3BED0 /* SingleUserDbOperation.cpp in Sources */,
+				33F5EB9421242EB30087CA69 /* bcrypt.c in Sources */,
 				33F652D6211C588B00A3BED0 /* CommTools.cpp in Sources */,
 				33F5EB4A21227EA40087CA69 /* GlobalData.cpp in Sources */,
+				33F5EB8F21242EA90087CA69 /* x86.S in Sources */,
 				33F652C9211C46C800A3BED0 /* main.cpp in Sources */,
+				33F5EB9021242EA90087CA69 /* wrapper.c in Sources */,
 				33F652E2211C64D800A3BED0 /* single_user_online.grpc.pb.cc in Sources */,
 				33F652DC211C58E000A3BED0 /* SingleUserOnlineServiceImpl.cpp in Sources */,
 				33F652E1211C64D800A3BED0 /* single_user_online.pb.cc in Sources */,
+				33F5EB8E21242EA90087CA69 /* crypt_gensalt.c in Sources */,
+				33F5EB9121242EA90087CA69 /* crypt_blowfish.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

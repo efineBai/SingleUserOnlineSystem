@@ -23,6 +23,6 @@ namespace CommTools {
     int hexstring_to_buff(const std::string strHexString, char *szBuff, int nSize);
     string getMD5(const string& src);
     string RsaDecode(const string);
-    
+    string bcrypt(const string);
 }
 #endif /* CommonTools_hpp */
