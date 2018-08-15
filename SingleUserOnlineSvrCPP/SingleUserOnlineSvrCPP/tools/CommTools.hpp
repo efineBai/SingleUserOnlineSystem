@@ -23,6 +23,8 @@ namespace CommTools {
     int hexstring_to_buff(const std::string strHexString, char *szBuff, int nSize);
     string getMD5(const string& src);
     string RsaDecode(const string);
-    
+    string Sha256(const string str);
+    string generateToken();
+    string generateDbPwd(string pwdmd5, string salt);
 }
 #endif /* CommonTools_hpp */

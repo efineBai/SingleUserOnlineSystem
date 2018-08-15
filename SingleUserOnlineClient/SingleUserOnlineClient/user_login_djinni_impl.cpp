@@ -12,7 +12,7 @@
 #include <ctime>
 #include <string>
 #include <sstream>
-#include "CommTools.cpp"
+#include "CommTools.hpp"
 #include <grpc/grpc.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
@@ -78,7 +78,7 @@ int32_t UserLoginImpl::login(const std::string & user_name, const std::string & 
     p = CommTools::RsaEncodeWithSvr(p);
     //string hex_p = CommTools::buff_to_hexstring(p.c_str(), (int)std::strlen(p.c_str()));
     LOGD("user pwd after hash add salt rsa: %s", p.c_str());
-    stub.keepAliveStream(user_name, p, ts, callback);
+    stub.keepAliveStream(user_name, pwd, ts, callback);
     return -1;
 }
 

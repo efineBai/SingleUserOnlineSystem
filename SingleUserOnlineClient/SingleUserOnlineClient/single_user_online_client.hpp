@@ -24,6 +24,7 @@
 #include <grpcpp/security/credentials.h>
 #include "single_user_online.grpc.pb.h"
 #include "../generated-src/cpp/login_status_callback.hpp"
+#include "CommTools.hpp"
 
 
 using grpc::Channel;

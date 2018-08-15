@@ -32,6 +32,7 @@ namespace GlobalData{
     const int USER_STATUS_CHECK_SUCC = 10002;
     const int USER_SIGNUP_SUCC = 10003; // 用户注册成功
     const int USER_STATUS_NEED_CHECK = 10004;
+    const int USER_STATUS_TOKEN  = 10005; //将token 传递给客户端
 
 
     // 客户端发起的错误码
@@ -39,6 +40,7 @@ namespace GlobalData{
     const int CLIENT_USER_LOGOUT = 20001;
     const int CLIENT_NET_CONNECT_ERR = 20002;
     const int CLIENT_UNKNOWN_ERR = 20003;
+    const int CLIENT_GET_TOKEN = 20004; // 登录之前先获取token
     
     // svr的公钥
     const string PUBLIC_KEY = "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQClZ5G/wTRcEqX6gMx8fE9rnQZi\nnPInpleRP3kHJcv48Q3Epwn8/WqyKX2ImdxHJ2DTo06FRs3O7Tj8Su4/vrdFrM4w\nMiJEAe99Y62cv7X4psseyxL1kxcQSdgZ2wiyKMrfV2XMCSplqndgk0yJav/l74Mr\nc/R99SkmM4rIrs6sLQIDAQAB\n-----END PUBLIC KEY-----";

@@ -19,7 +19,6 @@
 #include "tools/CommTools.hpp"
 #include <unistd.h>
 
-
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
@@ -53,7 +52,8 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
             response->set_resultmsg("pwd is empty");
             return Status::OK;
         }
-        if(!SingleUserDBOperation::getInstance()->insertNewUser(request->userid(), CommTools::getMD5(CommTools::getMD5(pwd)+GlobalData::SALT_PWD))){
+        string salt = CommTools::generateToken();
+        if(!SingleUserDBOperation::getInstance()->insertNewUser(request->userid(), CommTools::generateDbPwd(pwd, salt), salt)){
             cout<< "insert user succ"<<endl;
             response->set_resultcode(GlobalData::USER_SIGNUP_SUCC);
             response->set_resultmsg("create user succ");
@@ -78,73 +78,164 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
             if(clientLoginInfo.userid().empty()){
                continue;
             }
-           
-            string dbPwd;
-            if(!SingleUserDBOperation::getInstance()->queryUserPwd(clientLoginInfo.userid(), dbPwd)){
-                cout<< "query user succ"<< dbPwd<<endl;
-//                dbPwd = dbPwd + clientLoginInfo.timestamp();
-//                dbPwd = CommTools::getMD5(dbPwd);
-                string clientpwd = clientLoginInfo.passwordencoded();
-                clientpwd = CommTools::RsaDecode(clientpwd);
-                if(clientpwd.length() > 10) {
-                    // 先得到md5值
-                    cout<<"clientpwd"<<clientpwd<<endl;
-                    clientpwd = clientpwd.substr(0, clientpwd.length() -10);
-                    cout<<"clientpwd"<<clientpwd<<endl;
-                    clientpwd = CommTools::getMD5(clientpwd + GlobalData::SALT_PWD);
-                } else {
-                    // 密码不对
-                    singleuseronline::LoginInfo svrLoginInfo;
-                    svrLoginInfo.set_userid(clientLoginInfo.userid());
-                    svrLoginInfo.set_status(GlobalData::USER_PWD_ERROR);
-                    (*stream).ServerReaderWriter::Write(svrLoginInfo);
-                   
-                }
-                if(dbPwd.compare(clientpwd) == 0){
-                    // 密码匹配成功,先查询是否有已经登陆的该用户
-                    std::map<string, StreamStatus>::const_iterator it;
-                    it = GlobalData::allUserAlive->find(clientLoginInfo.userid());
-                    if(it != GlobalData::allUserAlive->end()){
-                        //之前该用户已经登录过；则先将之前的登录退出
-                        singleuseronline::LoginInfo logininfo;
-                        logininfo.set_userid(clientLoginInfo.userid());
-                        logininfo.set_status(GlobalData::USER_LOGIN_OTHER);
-                        ::grpc::ServerReaderWriter< ::singleuseronline::LoginInfo, ::singleuseronline::LoginInfo>* lastStream = it->second.stream;
-                        cout<<"last stream:"<<it->second.stream<<"; new stream"<< stream<<endl;
-                        int ret = it->second.stream->ServerReaderWriter::Write(logininfo);
-                        cout<<"lastStream logout :"<<ret<<endl;
-                
+            
+            // 首先判断客户端的发送的状态码
+            
+            //如果是获取token
+            if(clientLoginInfo.status() == GlobalData::CLIENT_GET_TOKEN){
+                //先将dbpwd 与 salt 获取到，然后存储到内存中
+                string dbPwd, salt;
+                if(!SingleUserDBOperation::getInstance()->queryUserPwd(clientLoginInfo.userid(), dbPwd, salt)){
+                    //用户存在，开始校验密码的过程
+                    cout<< "query user succ"<< clientLoginInfo.userid()<<endl;
+                    if(GlobalData::tryLoginUser->find(clientLoginInfo.userid()) != GlobalData::tryLoginUser->end()){
+                        // 如果当前用户之前已经有正在登陆的连接，情况比较多，暂时先丢弃当前请求，等待10s,如果该用户还在tryloginUser中，则将该记录直接删除，防止之前登陆中断后，无法再次登陆
+                        //先丢弃当前请求
+                        singleuseronline::LoginInfo svrLoginInfo;
+                        svrLoginInfo.set_userid(clientLoginInfo.userid());
+                        svrLoginInfo.set_status(GlobalData::USER_LOGIN_OTHER);
+                        (*stream).ServerReaderWriter::Write(svrLoginInfo);
+                        //等待10s
+                        std::this_thread::sleep_for(std::chrono::seconds(10));
+                        //再次检查
+                         if(GlobalData::tryLoginUser->find(clientLoginInfo.userid()) != GlobalData::tryLoginUser->end()){
+                             GlobalData::tryLoginUser->erase(clientLoginInfo.userid());
+                         }
+                        //直接中断连接
+                        break;
                     }
                     
-                    //当前用户登录成功
-                    stream2 = stream;
-                    GlobalData::DeleteFromAllUser(clientLoginInfo.userid());//GlobalData::allUserAlive->erase(clientLoginInfo.userid());
-                    StreamStatus status(stream, clientLoginInfo);
-                    (*GlobalData::allUserAlive)[clientLoginInfo.userid()] = status;
-                    singleuseronline::LoginInfo svrLoginInfo;
-                    svrLoginInfo.set_userid(clientLoginInfo.userid());
-                    svrLoginInfo.set_status(GlobalData::USER_LOGIN_SUCC);
-                    (*stream).ServerReaderWriter::Write(svrLoginInfo);
-                  
-                    continue;
-                
+                    //当前该用户没有正在验证中
+                    string token = CommTools::generateToken();
+                    cout<<"create new status : salt:"<<salt<<";token:"<<token<<endl;
+                    StreamStatus status(stream, dbPwd, salt, token);
+                    (*GlobalData::tryLoginUser)[clientLoginInfo.userid()] = status;
+                    LoginInfo svrLoginfo;
+                    svrLoginfo.set_status(GlobalData::USER_STATUS_TOKEN);
+                    svrLoginfo.set_deviceid(token);
+                    svrLoginfo.set_passwordencoded(salt);
+                    (*stream).ServerReaderWriter::Write(svrLoginfo);
                 } else {
-                    //密码不正确; 提示错误
+                    // 当前用户不存在
                     singleuseronline::LoginInfo svrLoginInfo;
                     svrLoginInfo.set_userid(clientLoginInfo.userid());
-                    svrLoginInfo.set_status(GlobalData::USER_PWD_ERROR);
+                    svrLoginInfo.set_status(GlobalData::USER_NOT_EXIST);
                     (*stream).ServerReaderWriter::Write(svrLoginInfo);
-                   continue;
+                    continue;
                 }
-            } else {
-                // 当前用户不存在
-                singleuseronline::LoginInfo svrLoginInfo;
-                svrLoginInfo.set_userid(clientLoginInfo.userid());
-                svrLoginInfo.set_status(GlobalData::USER_NOT_EXIST);
-                (*stream).ServerReaderWriter::Write(svrLoginInfo);
-                continue;
             }
-        }
+            // 如果是验证密码
+            else if(clientLoginInfo.status() == GlobalData::CLIENT_USER_LOGIN){
+                //查看是否是以及获取了token
+                if(GlobalData::tryLoginUser->find(clientLoginInfo.userid()) != GlobalData::tryLoginUser->end()){
+                    string dbpwd = (*GlobalData::tryLoginUser)[clientLoginInfo.userid()].dbpwd;
+                    string token = (*GlobalData::tryLoginUser)[clientLoginInfo.userid()].token;
+                    string encoded_dbpwd = CommTools::Sha256(dbpwd+token);
+                    StreamStatus status = (*GlobalData::tryLoginUser)[clientLoginInfo.userid()];
+                    if(encoded_dbpwd.compare(clientLoginInfo.passwordencoded())==0){
+                        // 密码匹配成功,先查询是否有已经登陆的该用户
+                        std::map<string, StreamStatus>::const_iterator it;
+                        it = GlobalData::allUserAlive->find(clientLoginInfo.userid());
+                        if(it != GlobalData::allUserAlive->end()){
+                            //之前该用户已经登录过；则先将之前的登录退出
+                            singleuseronline::LoginInfo logininfo;
+                            logininfo.set_userid(clientLoginInfo.userid());
+                            logininfo.set_status(GlobalData::USER_LOGIN_OTHER);
+                            cout<<"last stream:"<<it->second.stream<<"; new stream"<< stream<<endl;
+                            int ret = it->second.stream->ServerReaderWriter::Write(logininfo);
+                            cout<<"lastStream logout :"<<ret<<endl;
+                        }
+                        
+                        //当前用户登录成功，添加到已经登录成功的用户列表中
+                        GlobalData::DeleteFromAllUser(clientLoginInfo.userid());//GlobalData::allUserAlive->erase(clientLoginInfo.userid());
+                        (*GlobalData::allUserAlive)[clientLoginInfo.userid()] = status;
+                        //从正在建立连接的用户中去掉该用户
+                        GlobalData::tryLoginUser->erase(clientLoginInfo.userid());
+                        singleuseronline::LoginInfo svrLoginInfo;
+                        svrLoginInfo.set_userid(clientLoginInfo.userid());
+                        svrLoginInfo.set_status(GlobalData::USER_LOGIN_SUCC);
+                        (*stream).ServerReaderWriter::Write(svrLoginInfo);
+                        
+                    } else {
+                        // 用户密码校验失败
+                        GlobalData::tryLoginUser->erase(clientLoginInfo.userid());
+                        singleuseronline::LoginInfo svrLoginInfo;
+                        svrLoginInfo.set_userid(clientLoginInfo.userid());
+                        svrLoginInfo.set_status(GlobalData::USER_PWD_ERROR);
+                        (*stream).ServerReaderWriter::Write(svrLoginInfo);
+                    }
+                } else {
+                    //还未获取token，丢弃请求
+                    break;
+                }
+            }
+           
+//            string dbPwd;
+//            if(!SingleUserDBOperation::getInstance()->queryUserPwd(clientLoginInfo.userid(), dbPwd)){
+//                cout<< "query user succ"<< dbPwd<<endl;
+////                dbPwd = dbPwd + clientLoginInfo.timestamp();
+////                dbPwd = CommTools::getMD5(dbPwd);
+//                string clientpwd = clientLoginInfo.passwordencoded();
+//                clientpwd = CommTools::RsaDecode(clientpwd);
+//                if(clientpwd.length() > 10) {
+//                    // 先得到md5值
+//                    cout<<"clientpwd"<<clientpwd<<endl;
+//                    clientpwd = clientpwd.substr(0, clientpwd.length() -10);
+//                    cout<<"clientpwd"<<clientpwd<<endl;
+//                    clientpwd = CommTools::getMD5(clientpwd + GlobalData::SALT_PWD);
+//                } else {
+//                    // 密码不对
+//                    singleuseronline::LoginInfo svrLoginInfo;
+//                    svrLoginInfo.set_userid(clientLoginInfo.userid());
+//                    svrLoginInfo.set_status(GlobalData::USER_PWD_ERROR);
+//                    (*stream).ServerReaderWriter::Write(svrLoginInfo);
+//
+//                }
+//                if(dbPwd.compare(clientpwd) == 0){
+//                    // 密码匹配成功,先查询是否有已经登陆的该用户
+//                    std::map<string, StreamStatus>::const_iterator it;
+//                    it = GlobalData::allUserAlive->find(clientLoginInfo.userid());
+//                    if(it != GlobalData::allUserAlive->end()){
+//                        //之前该用户已经登录过；则先将之前的登录退出
+//                        singleuseronline::LoginInfo logininfo;
+//                        logininfo.set_userid(clientLoginInfo.userid());
+//                        logininfo.set_status(GlobalData::USER_LOGIN_OTHER);
+//                        ::grpc::ServerReaderWriter< ::singleuseronline::LoginInfo, ::singleuseronline::LoginInfo>* lastStream = it->second.stream;
+//                        cout<<"last stream:"<<it->second.stream<<"; new stream"<< stream<<endl;
+//                        int ret = it->second.stream->ServerReaderWriter::Write(logininfo);
+//                        cout<<"lastStream logout :"<<ret<<endl;
+//
+//                    }
+//
+//                    //当前用户登录成功
+//                    stream2 = stream;
+//                    GlobalData::DeleteFromAllUser(clientLoginInfo.userid());//GlobalData::allUserAlive->erase(clientLoginInfo.userid());
+//                    StreamStatus status(stream, clientLoginInfo);
+//                    (*GlobalData::allUserAlive)[clientLoginInfo.userid()] = status;
+//                    singleuseronline::LoginInfo svrLoginInfo;
+//                    svrLoginInfo.set_userid(clientLoginInfo.userid());
+//                    svrLoginInfo.set_status(GlobalData::USER_LOGIN_SUCC);
+//                    (*stream).ServerReaderWriter::Write(svrLoginInfo);
+//
+//                    continue;
+//
+//                } else {
+//                    //密码不正确; 提示错误
+//                    singleuseronline::LoginInfo svrLoginInfo;
+//                    svrLoginInfo.set_userid(clientLoginInfo.userid());
+//                    svrLoginInfo.set_status(GlobalData::USER_PWD_ERROR);
+//                    (*stream).ServerReaderWriter::Write(svrLoginInfo);
+//                   continue;
+//                }
+//            } else {
+//                // 当前用户不存在
+//                singleuseronline::LoginInfo svrLoginInfo;
+//                svrLoginInfo.set_userid(clientLoginInfo.userid());
+//                svrLoginInfo.set_status(GlobalData::USER_NOT_EXIST);
+//                (*stream).ServerReaderWriter::Write(svrLoginInfo);
+//                continue;
+//            }
+        } //while()
        
         return Status::OK;
     }

@@ -13,6 +13,7 @@
 
 
 using namespace std;
+
 bool SingleUserOnlineStub::SignUp(const string userName, const string pwd, const std::shared_ptr<LoginStatusCallback> & callback) {
     ClientContext context;
     LoginInfo loginInfo ;
@@ -51,8 +52,8 @@ bool SingleUserOnlineStub::keepAliveStream(const string userName,const  string p
     timespec.clock_type = GPR_TIMESPAN;
     context.set_deadline(timespec);
     LoginInfo loginInfo;
+    loginInfo.set_status(GlobalData::CLIENT_GET_TOKEN);
     loginInfo.set_userid(userName);
-    loginInfo.set_passwordencoded(pwd);
     loginInfo.set_timestamp(time_stamp);
     
     
@@ -73,6 +74,8 @@ bool SingleUserOnlineStub::keepAliveStream(const string userName,const  string p
             cout<<"keepAlive Stream"<<endl;
             LOGD("%s",retInfo.userid().c_str());
             LOGD("%d",retInfo.status());
+            string pwdParsed;
+            LoginInfo clientInfo;
             switch (retInfo.status()) {
                 case GlobalData::USER_STATUS_NEED_CHECK:
                     // svr发起对客户端的校验
@@ -85,6 +88,7 @@ bool SingleUserOnlineStub::keepAliveStream(const string userName,const  string p
                         callback->onLoginSucc();
                     }
                     break;
+
                 case GlobalData::USER_NOT_EXIST:
                     stream->WritesDone();
                     stream->Finish();
@@ -103,6 +107,19 @@ bool SingleUserOnlineStub::keepAliveStream(const string userName,const  string p
                 case GlobalData::USER_LOGIN_SUCC:
                     callback->onLoginSucc();
                    
+                    break;
+                case GlobalData::USER_STATUS_TOKEN:
+                    retInfo.passwordencoded();
+                    pwdParsed = CommTools::generateDbPwd(pwd, retInfo.passwordencoded());
+                    pwdParsed = CommTools::Sha256(pwdParsed + retInfo.deviceid());
+                    clientInfo.set_userid(userName);
+                    clientInfo.set_passwordencoded(pwdParsed);
+                    clientInfo.set_status(GlobalData::CLIENT_USER_LOGIN);
+                    stream->Write(clientInfo);
+                    //                    string token2 = retInfo.deviceid();
+//                    string hash = CommTools::generateDbPwd(pwd, salt);
+//                    string pwdhash = CommTools::Sha256(hash+token);
+                    
                     break;
                 default:
                     callback->onLoginOut(GlobalData::CLIENT_UNKNOWN_ERR, "connection broken");

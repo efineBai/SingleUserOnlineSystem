@@ -34,6 +34,7 @@ namespace GlobalData{
     const int USER_STATUS_CHECK_SUCC = 10002;
     const int USER_SIGNUP_SUCC = 10003; // 用户注册成功
     const int USER_STATUS_NEED_CHECK = 10004;
+    const int USER_STATUS_TOKEN  = 10005; //将token 传递给客户端
     
     
     // 客户端发起的错误码
@@ -41,15 +42,21 @@ namespace GlobalData{
     const int CLIENT_USER_LOGOUT = 20001;
     const int CLIENT_NET_CONNECT_ERR = 20002;
     const int CLIENT_UNKNOWN_ERR = 20003;
+    const int CLIENT_GET_TOKEN = 20004; // 登录之前先获取token
     
     
     class StreamStatus{
     public:
         ::grpc::ServerReaderWriter< ::singleuseronline::LoginInfo, ::singleuseronline::LoginInfo>* stream;
-        LoginInfo loginInfo;
-        StreamStatus(::grpc::ServerReaderWriter< ::singleuseronline::LoginInfo, ::singleuseronline::LoginInfo>* stream, singleuseronline::LoginInfo loginInfo){
+        
+        string salt;
+        string dbpwd;
+        string token;
+        StreamStatus(::grpc::ServerReaderWriter< ::singleuseronline::LoginInfo, ::singleuseronline::LoginInfo>* stream, const string dbpwd, const string salt, const string token){
             this->stream = stream;
-            this->loginInfo = loginInfo;
+            this->salt = salt;
+            this->dbpwd = dbpwd;
+            this->token = token;
         }
         StreamStatus(){};
     };
@@ -70,6 +77,7 @@ namespace GlobalData{
     const string SALT_PWD = "pVuXAppyG4ivkmQouCaUX3mMGxYiSvn3VxBZZAly74Z";
     // 记录当前可用的请求连接
    extern std::map<string, StreamStatus>* allUserAlive;
+    extern std::map<string, StreamStatus>* tryLoginUser;
    extern void DeleteFromAllUser(string userid);
 }
 

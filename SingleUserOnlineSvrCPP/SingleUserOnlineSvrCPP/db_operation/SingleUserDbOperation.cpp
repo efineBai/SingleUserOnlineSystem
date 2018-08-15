@@ -31,15 +31,15 @@ SingleUserDBOperation::~SingleUserDBOperation(){
 }
 
 //创建一个新用户
-int SingleUserDBOperation::insertNewUser(string user_name, string pwd){
+int SingleUserDBOperation::insertNewUser(string user_name, string pwd, string salt){
     if(conn == NULL || pwd.length()==0) {
         return -1;
     }
     
     //创建插入的sql语句
     stringstream sqlstream;
-    sqlstream<<"insert into  singleuser.user_info (user_name, user_pwd) values ('" <<user_name<<"','"
-    <<pwd<<"');"<<endl;
+    sqlstream<<"insert into  singleuser.user_info (user_name, user_pwd, user_salt) values ('" <<user_name<<"','"
+    <<pwd<<"', '"<<salt<<"');"<<endl;
     string sql = sqlstream.str();
     cout<<"create new user sql: "<<sql<<endl;
     
@@ -64,7 +64,7 @@ int SingleUserDBOperation::insertNewUser(string user_name, string pwd){
 }
 
 //查询用户的密码
-int SingleUserDBOperation::queryUserPwd(string user_name, string &pwd){
+int SingleUserDBOperation::queryUserPwd(string user_name, string &pwd, string& salt){
     if(conn == NULL) {
         return -1;
     }
@@ -73,7 +73,7 @@ int SingleUserDBOperation::queryUserPwd(string user_name, string &pwd){
     MYSQL_ROW row;
     //创建查询的sql语句
     stringstream sqlstream;
-    sqlstream<<"select user_pwd from singleuser.user_info where user_name = '"<<user_name<<"';";
+    sqlstream<<"select user_pwd, user_salt from singleuser.user_info where user_name = '"<<user_name<<"';";
     string sql = sqlstream.str();
     cout<<"query pwd of user:"<<user_name<<endl;
     
@@ -93,8 +93,9 @@ int SingleUserDBOperation::queryUserPwd(string user_name, string &pwd){
         if(row == NULL ) {
             return -1;
         }
-        cout<<"query result "<<row[0]<<endl;
+        cout<<"query result "<<row[0]<<"&"<<row[1]<<endl;
         pwd = row[0];
+        salt = row[1];
         mysql_free_result(res);
     }
     

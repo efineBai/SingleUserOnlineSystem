@@ -13,6 +13,7 @@ std::mutex g_lock;
 
 namespace GlobalData{
     std::map<std::string, StreamStatus>* allUserAlive = new std::map<std::string,StreamStatus>;
+    std::map<std::string, StreamStatus>* tryLoginUser = new std::map<std::string,StreamStatus>;
     void DeleteFromAllUser(string userid){
         g_lock.lock();
         if(allUserAlive->find(userid) != allUserAlive->end()){

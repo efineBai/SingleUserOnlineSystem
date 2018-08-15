@@ -11,6 +11,7 @@
 #include <openssl/pem.h>
 #include <openssl/md5.h>
 #include "../GlobalData.hpp"
+#include <time.h>
 
 string CommTools::RsaDecode(const string strData){
     std::string strRet;
@@ -110,6 +111,38 @@ char CommTools::GetCharVal(char c)
     {
         return 0;
     }
+}
+
+string CommTools::Sha256(const string str)
+{
+    char buf[2];
+    unsigned char hash[SHA256_DIGEST_LENGTH];
+    SHA256_CTX sha256;
+    SHA256_Init(&sha256);
+    SHA256_Update(&sha256, str.c_str(), str.size());
+    SHA256_Final(hash, &sha256);
+    std::string NewString = "";
+    for(int i = 0; i < SHA256_DIGEST_LENGTH; i++)
+    {
+        sprintf(buf,"%02x",hash[i]);
+        NewString = NewString + buf;
+    }
+    return NewString;
+}
+
+// 用作pwd的盐，以及token
+string CommTools::generateToken(){
+//    string token;
+//    time_t t = time(NULL);
+//    token = getMD5(std::to_string(t));
+    return "1";
+}
+
+// 生成db存储的pwd
+string CommTools::generateDbPwd(string pwdmd5, string salt){
+    string pwdcontent = pwdmd5 + salt;
+    string dbpwd = Sha256(pwdcontent);
+    return dbpwd;
 }
 
 string CommTools::getMD5(const string& src)
