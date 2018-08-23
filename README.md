@@ -33,3 +33,46 @@
  
  3.目前使用的是grpc的insecure连接，系统未部署在真实服务器上
  
+ 
+ 项目部署指引：
+
+服务端：
+	运行环境 MacOs 10.13.6 
+	需要的软件： mysql XCode grpc protoc bazel
+
+	运行方法：
+	1.需要在mysql中建立表：
+		1）用户踢出规则表
+			CREATE TABLE `user_forbid` (
+			  `ruleid` int(11) NOT NULL,
+			  `useridrexp` varchar(45) NOT NULL,
+			  PRIMARY KEY (`ruleid`,`useridrexp`)
+			) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+		2）用户信息存储表：
+			CREATE TABLE `user_info` (
+			  `user_name` varchar(64) NOT NULL,
+			  `user_pwd` varchar(256) NOT NULL,
+			  `statue` int(11) DEFAULT '0',
+			  `user_salt` varchar(32) NOT NULL,
+			  PRIMARY KEY (`user_name`),
+			  UNIQUE KEY `user_name_UNIQUE` (`user_name`)
+			) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+	2. 需要在svrCpp的db_operation/SingleUserDbOperation.cpp中修改对应的数据库名、用户名及密码等
+	3. 在工程根目录下执行bazel命令,即可启动svr
+		bazel build //SingleUserOnlineSvrCpp:single_server
+		./bazel-bin/SingleUserOnlineSvrCpp/single_server
+
+
+客户端：
+	编译环境 MacOs 10.13.6 
+	需要的软件： Android studio(带有NDK相关工具)、djinni
+
+	运行方法：
+	1.切换到/SingleUserOnline/SingleUserOnlineClient/SingleUserOnlineApp 目录
+	2.执行gradle 命令；或者通过Android studio打开工程后直接运行app
+		./gradlew assembledebug
+  
+  
+  运行指引：
+待补充
