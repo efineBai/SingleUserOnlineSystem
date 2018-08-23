@@ -87,3 +87,7 @@ string srvaddr = "PC_IP:3001";
 3.构造apk
 
 4.运行svrCpp程序及app
+
+注意：
+
+mac上编译SingleOnlineUserApp时，会受到openssl影响，需要保证 执行openssl version得到的版本号为1.0.2以下，这样编grpc代码时可以将boringssl编译进去
