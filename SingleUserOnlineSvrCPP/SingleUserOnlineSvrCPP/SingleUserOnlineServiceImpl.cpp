@@ -7,11 +7,9 @@
 //
 
 #define BCRYPT_HASHSIZE 64
-#include "single_user_online.grpc.pb.h"
-#include <grpc/grpc.h>
-#include <grpcpp/server.h>
-#include <grpcpp/server_builder.h>
-#include <grpcpp/server_context.h>
+#include "proto/single_user_online.grpc.pb.h"
+
+#include <grpc++/grpc++.h>
 #include "db_operation/SingleUserDbOperation.hpp"
 #include <vector>
 #include "GlobalData.hpp"

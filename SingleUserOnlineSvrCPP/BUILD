@@ -13,58 +13,42 @@
 # limitations under the License.
 
 
+package(default_visibility = ["//visibility:public"])
+
+# load("@org_pubref_rules_protobuf//closure:rules.bzl", "closure_proto_library")
+load("@org_pubref_rules_protobuf//cpp:rules.bzl", "cc_proto_library")
+
 
 cc_binary(
     name = "single_server",
     srcs = [
             "SingleUserOnlineSvrCPP/db_operation/SingleUserDbOperation.cpp",
             "SingleUserOnlineSvrCPP/SingleUserOnlineServiceImpl.cpp",
-            "SingleUserOnlineSvrCPP/single_user_online.grpc.pb.h",
-            "SingleUserOnlineSvrCPP/single_user_online.pb.h",
             "SingleUserOnlineSvrCPP/db_operation/SingleUserDbOperation.hpp",
-            "SingleUserOnlineSvrCPP/grpc_gen/single_user_online.grpc.pb.cc",
-            "SingleUserOnlineSvrCPP/grpc_gen/single_user_online.grpc.pb.h",
-            "SingleUserOnlineSvrCPP/grpc_gen/single_user_online.pb.cc",
-            "SingleUserOnlineSvrCPP/grpc_gen/single_user_online.pb.h",
             "SingleUserOnlineSvrCPP/GlobalData.hpp",
             "SingleUserOnlineSvrCPP/GlobalData.cpp",
             "SingleUserOnlineSvrCPP/tools/CommTools.hpp",
             "SingleUserOnlineSvrCPP/tools/CommTools.cpp",
- "SingleUserOnlineSvrCPP/bcrypt.c",
- "SingleUserOnlineSvrCPP/bcrypt.h",
-"SingleUserOnlineSvrCPP/crypt_blowfish/crypt.h",
-"SingleUserOnlineSvrCPP/crypt_blowfish/crypt_blowfish.c",
-"SingleUserOnlineSvrCPP/crypt_blowfish/crypt_blowfish.h",
-"SingleUserOnlineSvrCPP/crypt_blowfish/crypt_gensalt.c",
-"SingleUserOnlineSvrCPP/crypt_blowfish/crypt_gensalt.h",
-"SingleUserOnlineSvrCPP/crypt_blowfish/ow-crypt.h",
-"SingleUserOnlineSvrCPP/crypt_blowfish/wrapper.c",
-"SingleUserOnlineSvrCPP/crypt_blowfish/x86.S",
+            "SingleUserOnlineSvrCPP/bcrypt.c",
+            "SingleUserOnlineSvrCPP/bcrypt.h",
+            "SingleUserOnlineSvrCPP/crypt_blowfish/crypt.h",
+            "SingleUserOnlineSvrCPP/crypt_blowfish/crypt_blowfish.c",
+            "SingleUserOnlineSvrCPP/crypt_blowfish/crypt_blowfish.h",
+            "SingleUserOnlineSvrCPP/crypt_blowfish/crypt_gensalt.c",
+            "SingleUserOnlineSvrCPP/crypt_blowfish/crypt_gensalt.h",
+            "SingleUserOnlineSvrCPP/crypt_blowfish/ow-crypt.h",
+            "SingleUserOnlineSvrCPP/crypt_blowfish/wrapper.c",
 
-            "SingleUserOnlineSvrCPP/libgrpc++_reflection.a",
-            "SingleUserOnlineSvrCPP/libgrpc++.a",
-            "SingleUserOnlineSvrCPP/libgrpc++_unsecure.a",
+            "SingleUserOnlineSvrCPP/crypt_blowfish/x86.S",
             "SingleUserOnlineSvrCPP/libmysqlclient.a",
-            "SingleUserOnlineSvrCPP/libgpr.a",
-            "SingleUserOnlineSvrCPP/libgrpc.a",
-            "SingleUserOnlineSvrCPP/libgflags.a",
-            "SingleUserOnlineSvrCPP/libcrypto.a",
-            "SingleUserOnlineSvrCPP/libssl.a",
-            "SingleUserOnlineSvrCPP/libgrpc_cronet.a",
-            "SingleUserOnlineSvrCPP/libgrpc_plugin_support.a",
-            "SingleUserOnlineSvrCPP/libgrpc_unsecure.a",
-            "SingleUserOnlineSvrCPP/libgrpc++_core_stats.a",
-            "SingleUserOnlineSvrCPP/libgrpc++_cronet.a",
-            "SingleUserOnlineSvrCPP/libgrpc++_error_details.a",
-            "SingleUserOnlineSvrCPP/libgrpcpp_channelz.a",
-            "SingleUserOnlineSvrCPP/libares.a",
-            "SingleUserOnlineSvrCPP/libprotobuf.a",
+
             ],
     defines = ["BAZEL_BUILD"],
     copts = ["-I/usr/local/include",
     "-I/usr/local/include/mysql",
-    "-ISingleUserOnlineSvrCPP/SingleUserOnlineSvrCPP/libbcrypt/bcrypt/",
+    "-ISingleUserOnlineSvrCPP/libbcrypt/bcrypt/",
    ],
+   deps = ["//proto:single_user_online", "@openssl//:ssl"]
     
 )
 

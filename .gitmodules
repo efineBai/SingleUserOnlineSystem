@@ -4,3 +4,6 @@
 [submodule "SingleUserOnlineClient/deps/gyp"]
 	path = SingleUserOnlineClient/deps/gyp
 	url = https://chromium.googlesource.com/external/gyp.git
+[submodule "deps/grpc"]
+	path = deps/grpc
+	url = https://github.com/grpc/grpc.git

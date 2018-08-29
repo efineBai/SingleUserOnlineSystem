@@ -11,7 +11,7 @@
 
 #include <map>
 #include <grpc/grpc.h>
-#include "single_user_online.grpc.pb.h"
+#include "proto/single_user_online.grpc.pb.h"
 #include <string>
 
 using singleuseronline::LoginInfo;
