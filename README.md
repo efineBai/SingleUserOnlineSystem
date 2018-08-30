@@ -72,11 +72,13 @@
 	1.切换到/SingleUserOnline/SingleUserOnlineClient/SingleUserOnlineApp 目录
 	2.执行gradle 命令；或者通过Android studio打开工程后直接运行app
 		./gradlew assembledebug
-  
+  注意：
+        客户端apk需要在电脑上安装服务端依赖的相同版本的grpc，否则可能会导致svr端中grpc的代码异常。
+        测试可以先用根目录下已经编译好的app-debug.apk.
   
   运行指引：
   
-1.需要将PC与手机接入同一个局域网。
+1.需要将PC与手机接入同一个局域网。如果使用app-debug.apk，需要设置服务端ip为10.70.81.107
 
 2.修改客户端代码：
 
