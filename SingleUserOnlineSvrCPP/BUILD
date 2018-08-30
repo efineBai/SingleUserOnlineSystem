@@ -47,6 +47,7 @@ cc_binary(
     copts = ["-I/usr/local/include",
     "-I/usr/local/include/mysql",
     "-ISingleUserOnlineSvrCPP/libbcrypt/bcrypt/",
+    "-g",
    ],
    deps = ["//proto:single_user_online", "@openssl//:ssl"]
     

@@ -67,6 +67,7 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
             response->set_resultmsg("create user failed");
             cout<< "insert user failed"<<endl;
         }
+        cout<< "finish signup"<<endl;
         return Status::OK;
     }
     
