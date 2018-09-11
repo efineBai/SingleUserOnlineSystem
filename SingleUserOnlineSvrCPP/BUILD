@@ -38,16 +38,31 @@ cc_binary(
             "SingleUserOnlineSvrCPP/crypt_blowfish/crypt_gensalt.h",
             "SingleUserOnlineSvrCPP/crypt_blowfish/ow-crypt.h",
             "SingleUserOnlineSvrCPP/crypt_blowfish/wrapper.c",
+            "include/mysql/binary_log_types.h",
+            "include/mysql/errmsg.h",
+            "include/mysql/my_command.h",
+            "include/mysql/my_list.h",
 
+            "include/mysql/mysql.h",
+            "include/mysql/mysql_com.h",
+            "include/mysql/mysql_time.h",
+            "include/mysql/mysql_version.h",
+            "include/mysql/mysqld_error.h",
+            "include/mysql/mysqlx_ername.h",
+            "include/mysql/mysqlx_error.h",
+            "include/mysql/mysqlx_version.h",
+            "include/mysql/mysql/client_plugin.h",
+            "include/mysql/mysql/plugin_auth_common.h",
+            "include/mysql/mysql/udf_registration_types.h",
             "SingleUserOnlineSvrCPP/crypt_blowfish/x86.S",
             "SingleUserOnlineSvrCPP/libmysqlclient.a",
 
             ],
     defines = ["BAZEL_BUILD"],
-    copts = ["-I/usr/local/include",
-    "-I/usr/local/include/mysql",
-    "-ISingleUserOnlineSvrCPP/libbcrypt/bcrypt/",
-    "-g",
+    copts = [
+    "-ISingleUserOnlineSvrCPP/include",
+    "-ISingleUserOnlineSvrCPP/include/mysql",
+ 
    ],
    deps = ["//proto:single_user_online", "@openssl//:ssl"]
     
