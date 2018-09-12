@@ -57,7 +57,7 @@ function(android_protobuf_grpc_generate_cpp SRC_FILES HDR_FILES INCLUDE_ROOT)
   set(${HDR_FILES} ${${HDR_FILES}} PARENT_SCOPE)
 endfunction()
 
-set(PROTO_BASE_DIR ${GRPC_SRC_DIR}/../../protos)
+set(PROTO_BASE_DIR ${GRPC_SRC_DIR}/../../proto)
 
 android_protobuf_grpc_generate_cpp(
   HELLOWORLD_PROTO_SRCS HELLOWORLD_PROTO_HDRS ${PROTO_BASE_DIR} ${PROTO_BASE_DIR}/single_user_online.proto)

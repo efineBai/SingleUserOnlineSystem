@@ -18,7 +18,8 @@ SingleUserDBOperation* SingleUserDBOperation::getInstance(){
 
 SingleUserDBOperation::SingleUserDBOperation(){
     conn = mysql_init(NULL);
-    if(!mysql_real_connect(conn, "127.0.0.1", "root", "midas5384871", "singleuser", 3306, NULL, 0)){
+    
+    if(!mysql_real_connect(conn, "0.0.0.0", "castle", "testpwd", "singleuser", 3308, NULL, 0)){
         cerr<<"mysql connect error"<<endl;
         conn = NULL;
     }
@@ -33,6 +34,7 @@ SingleUserDBOperation::~SingleUserDBOperation(){
 //创建一个新用户
 int SingleUserDBOperation::insertNewUser(string user_name, string pwd, string salt){
     if(conn == NULL || pwd.length()==0) {
+         cerr<<"conn is null, NEED CHECK!"<<endl;
         return -1;
     }
     
@@ -66,6 +68,7 @@ int SingleUserDBOperation::insertNewUser(string user_name, string pwd, string sa
 //查询用户的密码
 int SingleUserDBOperation::queryUserPwd(string user_name, string &pwd, string& salt){
     if(conn == NULL) {
+         cerr<<"conn is null, NEED CHECK!"<<endl;
         return -1;
     }
     
@@ -114,7 +117,10 @@ int SingleUserDBOperation::queryRules(std::vector<string> &rules){
     stringstream sqlstream;
     sqlstream<<"select * from singleuser.user_forbid;";
     string sql = sqlstream.str();
-    
+    if(conn == NULL){
+        cerr<<"conn is null, NEED CHECK!"<<endl;
+        return -1;
+    }
     if(mysql_query(conn, sql.c_str())){
         cerr<<"load rules error :"<<mysql_errno(conn)<<mysql_error(conn)<<endl;
     } else {
