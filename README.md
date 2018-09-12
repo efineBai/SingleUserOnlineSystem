@@ -39,16 +39,31 @@
 服务端：
 	运行环境 MacOs 10.13.6 
 	需要的软件： mysql XCode grpc protoc bazel
-
+/////////09/12更新///////////////
+    通过 docker 安装 mysql
+    1、安装docker。 本工程使用的是docker for mac, 安装指引：https://docs.docker.com/docker-for-mac/install/#where-to-go-next
+    2、安装并运行mysql，借助docker 自动下载功能下载mysql镜像，并创建一个命名为mysql的容器，指定连接的端口为3308。
+            docker run -p 3308:3306 -d --name mysql -e MYSQL_ROOT_PASSWORD=password mysql/mysql-server
+    3、启动容器。
+            docker exec -it mysql bash
+    4、进入mysql。
+            mysql -uroot -ppassword
+    5、新建远程访问用户，指定鉴权plugin。
+            CREATE USER 'castle'@'%' IDENTIFIED WITH mysql_native_password BY 'testpwd';
+     之后继续执行运行方法中的建表相关的步骤
+//////////////////////////////////////
 	运行方法：
 	1.需要在mysql中建立表：
-		1）用户踢出规则表
+          1）建立数据库：
+          create database singleuser;
+          use singleuser;
+		2）用户踢出规则表
 			CREATE TABLE `user_forbid` (
 			  `ruleid` int(11) NOT NULL,
 			  `useridrexp` varchar(45) NOT NULL,
 			  PRIMARY KEY (`ruleid`,`useridrexp`)
 			) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-		2）用户信息存储表：
+		3）用户信息存储表：
 			CREATE TABLE `user_info` (
 			  `user_name` varchar(64) NOT NULL,
 			  `user_pwd` varchar(256) NOT NULL,
