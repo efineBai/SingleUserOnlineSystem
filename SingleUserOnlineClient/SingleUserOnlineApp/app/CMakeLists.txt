@@ -2,68 +2,27 @@ cmake_minimum_required(VERSION 3.4.1)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(helloworld_PROTOBUF_PROTOC_EXECUTABLE "/usr/local/bin/protoc" CACHE STRING "Protoc binary on host")
-set(helloworld_GRPC_CPP_PLUGIN_EXECUTABLE "/usr/local/bin/grpc_cpp_plugin" CACHE STRING "gRPC CPP plugin binary on host")
 
-set(GRPC_SRC_DIR ../../../deps/grpc/)
+set(GRPC_SRC_DIR ../../../deps/grpc)
 
 set(GRPC_BUILD_DIR ../grpc/outputs/${ANDROID_ABI})
 file(MAKE_DIRECTORY ${GRPC_BUILD_DIR})
 
 add_subdirectory(${GRPC_SRC_DIR} ${GRPC_BUILD_DIR})
 
-set(GRPC_PROTO_GENS_DIR ${CMAKE_BINARY_DIR}/gens)
+set(GRPC_PROTO_GENS_DIR ../proto-src)
 file(MAKE_DIRECTORY ${GRPC_PROTO_GENS_DIR})
 include_directories(${GRPC_PROTO_GENS_DIR})
 
-function(android_protobuf_grpc_generate_cpp SRC_FILES HDR_FILES INCLUDE_ROOT)
-  if(NOT ARGN)
-    message(SEND_ERROR "Error: android_protobuf_grpc_generate_cpp() called without any proto files")
-    return()
-  endif()
+set(RELFIL_WE single_user_online)
+list(APPEND HELLOWORLD_PROTO_SRCS "${GRPC_PROTO_GENS_DIR}/${RELFIL_WE}.pb.cc")
+list(APPEND HELLOWORLD_PROTO_HDRS "${GRPC_PROTO_GENS_DIR}/${RELFIL_WE}.pb.h")
+list(APPEND HELLOWORLD_PROTO_SRCS "${GRPC_PROTO_GENS_DIR}/${RELFIL_WE}.grpc.pb.cc")
+list(APPEND HELLOWORLD_PROTO_HDRS "${GRPC_PROTO_GENS_DIR}/${RELFIL_WE}.grpc.pb.h")
 
-  set(${SRC_FILES})
-  set(${HDR_FILES})
-  set(PROTOBUF_INCLUDE_PATH -I ${INCLUDE_ROOT})
-  foreach(FIL ${ARGN})
-    get_filename_component(ABS_FIL ${FIL} ABSOLUTE)
-    get_filename_component(FIL_WE ${FIL} NAME_WE)
-    file(RELATIVE_PATH REL_FIL ${CMAKE_CURRENT_SOURCE_DIR}/${INCLUDE_ROOT} ${ABS_FIL})
-    get_filename_component(REL_DIR ${REL_FIL} DIRECTORY)
-    set(RELFIL_WE "${REL_DIR}/${FIL_WE}")
+ add_library(helloworld_proto_lib SHARED ${HELLOWORLD_PROTO_HDRS} ${HELLOWORLD_PROTO_SRCS})
 
-    list(APPEND ${SRC_FILES} "${GRPC_PROTO_GENS_DIR}/${RELFIL_WE}.pb.cc")
-    list(APPEND ${HDR_FILES} "${GRPC_PROTO_GENS_DIR}/${RELFIL_WE}.pb.h")
-    list(APPEND ${SRC_FILES} "${GRPC_PROTO_GENS_DIR}/${RELFIL_WE}.grpc.pb.cc")
-    list(APPEND ${HDR_FILES} "${GRPC_PROTO_GENS_DIR}/${RELFIL_WE}.grpc.pb.h")
-
-    add_custom_command(
-      OUTPUT "${GRPC_PROTO_GENS_DIR}/${RELFIL_WE}.grpc.pb.cc"
-             "${GRPC_PROTO_GENS_DIR}/${RELFIL_WE}.grpc.pb.h"
-             "${GRPC_PROTO_GENS_DIR}/${RELFIL_WE}.pb.cc"
-             "${GRPC_PROTO_GENS_DIR}/${RELFIL_WE}.pb.h"
-      COMMAND ${helloworld_PROTOBUF_PROTOC_EXECUTABLE}
-      ARGS --grpc_out=${GRPC_PROTO_GENS_DIR}
-        --cpp_out=${GRPC_PROTO_GENS_DIR}
-        --plugin=protoc-gen-grpc=${helloworld_GRPC_CPP_PLUGIN_EXECUTABLE}
-        ${PROTOBUF_INCLUDE_PATH}
-        ${REL_FIL}
-      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-      DEPENDS ${helloworld_PROTOBUF_PROTOC_EXECUTABLE} ${helloworld_GRPC_CPP_PLUGIN_EXECUTABLE} ${ABS_FIL} )
-  endforeach()
-
-  set_source_files_properties(${${SRC_FILES}} ${${HDR_FILES}} PROPERTIES GENERATED TRUE)
-  set(${SRC_FILES} ${${SRC_FILES}} PARENT_SCOPE)
-  set(${HDR_FILES} ${${HDR_FILES}} PARENT_SCOPE)
-endfunction()
-
-set(PROTO_BASE_DIR ${GRPC_SRC_DIR}/../../proto)
-
-android_protobuf_grpc_generate_cpp(
-  HELLOWORLD_PROTO_SRCS HELLOWORLD_PROTO_HDRS ${PROTO_BASE_DIR} ${PROTO_BASE_DIR}/single_user_online.proto)
-
-add_library(helloworld_proto_lib
-  SHARED ${HELLOWORLD_PROTO_HDRS} ${HELLOWORLD_PROTO_SRCS})
+  MESSAGE( STATUS "list header =${HELLOWORLD_PROTO_HDRS}")
 
 target_link_libraries(helloworld_proto_lib
   grpc++
@@ -83,7 +42,6 @@ file(GLOB SOURCES
     ../../SingleUserOnlineClient/*.c
     ../../generated-src/cpp/*.hpp
     ../../generated-src/jni/*.cpp
-    ../../generated-src/jni/*.hpp
     ../../SingleUserOnlineClient/crypt_blowfish/*.h
     ../../SingleUserOnlineClient/crypt_blowfish/*.c
     ../../SingleUserOnlineClient/crypt_blowfish/*.S
