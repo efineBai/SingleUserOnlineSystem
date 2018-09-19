@@ -49,11 +49,11 @@ file(GLOB SOURCES
     )
 include_directories(
     ../../../deps/grpc/third_party/boringssl/include
-    ../../SingleUserOnlineClient/crypt_blowfish/
+    ../../SingleUserOnlineClient/crypt_blowfish
     ../../deps/djinni/support-lib/jni
-    ../../generated-src/cpp/*.hpp
-    ../../generated-src/jni/*.hpp
-    ../../SingleUserOnlineClient/*.hpp
+    ../../generated-src/cpp
+    ../../generated-src/jni
+    ../../SingleUserOnlineClient
 )
 # 将上述文件编译一个名为 `native-lib` 的 so
 add_library(native-lib
