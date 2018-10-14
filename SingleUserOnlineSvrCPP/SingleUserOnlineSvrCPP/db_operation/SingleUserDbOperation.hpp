@@ -23,6 +23,7 @@ public:
     int insertNewUser(const string user_name, const string pwd, const string salt);
     int queryUserPwd(string user_name, string& pwd, string& salt);
     int queryRules(std::vector<string>& rules);
+
 private:
     SingleUserDBOperation();
     static SingleUserDBOperation* dbInstance;

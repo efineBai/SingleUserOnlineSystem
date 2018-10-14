@@ -8,7 +8,7 @@
 
 #define BCRYPT_HASHSIZE 64
 #include "proto/single_user_online.grpc.pb.h"
-
+#include "proto/single_user_online.pb.h"
 #include <grpc++/grpc++.h>
 #include "db_operation/SingleUserDbOperation.hpp"
 #include <vector>
@@ -50,7 +50,7 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
             // 去除拼接上的时间戳； TODO 可以增加对时间戳的判断
             pwd = pwd.substr(0, pwd.length()-10);
         } else {
-            response->set_resultcode(GlobalData::USER_SIGNUP_ERR);
+            response->set_resultcode(singleuseronline::USER_SIGNUP_ERR);
             response->set_resultmsg("pwd is empty");
             return Status::OK;
         }
@@ -60,10 +60,10 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
         bcrypt_hashpw(pwd.c_str(), salt, hash);
         if(!SingleUserDBOperation::getInstance()->insertNewUser(request->userid(), hash, salt)){
             cout<< "insert user succ"<<endl;
-            response->set_resultcode(GlobalData::USER_SIGNUP_SUCC);
+            response->set_resultcode(singleuseronline::USER_SIGNUP_SUCC);
             response->set_resultmsg("create user succ");
         } else {
-            response->set_resultcode(GlobalData::USER_SIGNUP_ERR);
+            response->set_resultcode(singleuseronline::USER_SIGNUP_ERR);
             response->set_resultmsg("create user failed");
             cout<< "insert user failed"<<endl;
         }
@@ -88,18 +88,18 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
             // 首先判断客户端的发送的状态码
             
             //如果是获取token
-            if(clientLoginInfo.status() == GlobalData::CLIENT_GET_TOKEN){
+            if(clientLoginInfo.status() == singleuseronline::CLIENT_GET_TOKEN){
                 //先将dbpwd 与 salt 获取到，然后存储到内存中
                 string dbPwd, salt;
                 if(!SingleUserDBOperation::getInstance()->queryUserPwd(clientLoginInfo.userid(), dbPwd, salt)){
                     //用户存在，开始校验密码的过程
                     cout<< "query user succ"<< clientLoginInfo.userid()<<endl;
-                    if(GlobalData::tryLoginUser->find(clientLoginInfo.userid()) != GlobalData::tryLoginUser->end()){
+                    if(GlobalData::tryLoginUser->find(clientLoginInfo.userid()) != GlobalData::tryLoginUser->end()){0
                         // 如果当前用户之前已经有正在登陆的连接，情况比较多，暂时先丢弃当前请求，等待10s,如果该用户还在tryloginUser中，则将该记录直接删除，防止之前登陆中断后，无法再次登陆
                         //先丢弃当前请求
                         singleuseronline::LoginInfo svrLoginInfo;
                         svrLoginInfo.set_userid(clientLoginInfo.userid());
-                        svrLoginInfo.set_status(GlobalData::USER_LOGIN_OTHER);
+                        svrLoginInfo.set_status(singleuseronline::USER_LOGIN_OTHER);
                         (*stream).ServerReaderWriter::Write(svrLoginInfo);
                         //等待10s
                         std::this_thread::sleep_for(std::chrono::seconds(10));
@@ -117,7 +117,7 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
                     StreamStatus status(stream, dbPwd, salt, token);
                     (*GlobalData::tryLoginUser)[clientLoginInfo.userid()] = status;
                     LoginInfo svrLoginfo;
-                    svrLoginfo.set_status(GlobalData::USER_STATUS_TOKEN);
+                    svrLoginfo.set_status(singleuseronline::USER_STATUS_TOKEN);
                     svrLoginfo.set_deviceid(token);
                     svrLoginfo.set_passwordencoded(salt);
                     (*stream).ServerReaderWriter::Write(svrLoginfo);
@@ -125,13 +125,13 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
                     // 当前用户不存在
                     singleuseronline::LoginInfo svrLoginInfo;
                     svrLoginInfo.set_userid(clientLoginInfo.userid());
-                    svrLoginInfo.set_status(GlobalData::USER_NOT_EXIST);
+                    svrLoginInfo.set_status(singleuseronline::USER_NOT_EXIST);
                     (*stream).ServerReaderWriter::Write(svrLoginInfo);
                     continue;
                 }
             }
             // 如果是验证密码
-            else if(clientLoginInfo.status() == GlobalData::CLIENT_USER_LOGIN){
+            else if(clientLoginInfo.status() == singleuseronline::CLIENT_USER_LOGIN){
                 //查看是否是以及获取了token
                 if(GlobalData::tryLoginUser->find(clientLoginInfo.userid()) != GlobalData::tryLoginUser->end()){
                     string dbpwd = (*GlobalData::tryLoginUser)[clientLoginInfo.userid()].dbpwd;
@@ -146,7 +146,7 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
                             //之前该用户已经登录过；则先将之前的登录退出
                             singleuseronline::LoginInfo logininfo;
                             logininfo.set_userid(clientLoginInfo.userid());
-                            logininfo.set_status(GlobalData::USER_LOGIN_OTHER);
+                            logininfo.set_status(singleuseronline::USER_LOGIN_OTHER);
                             cout<<"last stream:"<<it->second.stream<<"; new stream"<< stream<<endl;
                             int ret = it->second.stream->ServerReaderWriter::Write(logininfo);
                             cout<<"lastStream logout :"<<ret<<endl;
@@ -159,7 +159,7 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
                         GlobalData::tryLoginUser->erase(clientLoginInfo.userid());
                         singleuseronline::LoginInfo svrLoginInfo;
                         svrLoginInfo.set_userid(clientLoginInfo.userid());
-                        svrLoginInfo.set_status(GlobalData::USER_LOGIN_SUCC);
+                        svrLoginInfo.set_status(singleuseronline::USER_LOGIN_SUCC);
                         (*stream).ServerReaderWriter::Write(svrLoginInfo);
                         
                     } else {
@@ -167,7 +167,7 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
                         GlobalData::tryLoginUser->erase(clientLoginInfo.userid());
                         singleuseronline::LoginInfo svrLoginInfo;
                         svrLoginInfo.set_userid(clientLoginInfo.userid());
-                        svrLoginInfo.set_status(GlobalData::USER_PWD_ERROR);
+                        svrLoginInfo.set_status(singleuseronline::USER_PWD_ERROR);
                         (*stream).ServerReaderWriter::Write(svrLoginInfo);
                     }
                 } else {
@@ -209,7 +209,7 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
                                 cout<<"user matched"<<endl;
                                 singleuseronline::LoginInfo lastLoginInfo;
                                 lastLoginInfo.set_userid(userid);
-                                lastLoginInfo.set_status(GlobalData::USER_LOGIN_OTHER);
+                                lastLoginInfo.set_status(singleuseronline::USER_LOGIN_OTHER);
                                 (*(it->second.stream)).ServerReaderWriter::Write(lastLoginInfo);
                                 mNeedErase.push_back(userid);
                                 cout<<"userid:"<<userid<<"matched:"<<*iter<<endl;

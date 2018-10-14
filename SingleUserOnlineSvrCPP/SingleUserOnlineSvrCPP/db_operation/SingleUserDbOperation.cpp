@@ -42,7 +42,7 @@ int SingleUserDBOperation::insertNewUser(string user_name, string pwd, string sa
     
     //创建插入的sql语句
 //    stringstream sqlstream;
-    char* sqlstream = "insert into  singleuser.user_info (user_name, user_pwd, user_salt) values (?, ?, ?);";
+    const char* sqlstream = "insert into  singleuser.user_info (user_name, user_pwd, user_salt) values (?, ?, ?);";
     MYSQL_STMT* stmt;
     stmt = mysql_stmt_init(conn);
     if (!stmt)
@@ -57,8 +57,7 @@ int SingleUserDBOperation::insertNewUser(string user_name, string pwd, string sa
         return -1;
     } else {
         cout<<"pwd;salt : "<<pwd<<";"<<salt<<endl;
-        MYSQL_BIND bind[3];
-//        memset(bind, 0, sizeof(bind));
+        MYSQL_BIND bind[3];
         bind[0].buffer_type = MYSQL_TYPE_STRING;
         bind[0].buffer = (char*)user_name.data();
         unsigned long size_usr = user_name.length();
@@ -125,11 +124,8 @@ int SingleUserDBOperation::queryUserPwd(string user_name, string &pwd_str, strin
         return -1;
     }
     
-    MYSQL_RES *res;
-    MYSQL_ROW row;
     //创建查询的sql语句
-    
-    char* sqlstream = "select user_pwd, user_salt from singleuser.user_info where user_name = ?;";
+    const char* sqlstream = "select user_pwd, user_salt from singleuser.user_info where user_name = ?;";
    
     cout<<"query pwd of user:"<<user_name<<endl;
    
@@ -146,8 +142,7 @@ int SingleUserDBOperation::queryUserPwd(string user_name, string &pwd_str, strin
         cerr<<"msyql_stmt_prepare error, please check sql"<<endl;
         return -1;
     } else {
-        MYSQL_BIND bind[1];
-        MYSQL_RES* res;
+        MYSQL_BIND bind[1];
         //        memset(bind, 0, sizeof(bind));
         bind[0].buffer_type = MYSQL_TYPE_STRING;
         bind[0].buffer = (char*)user_name.data();
@@ -171,7 +166,7 @@ int SingleUserDBOperation::queryUserPwd(string user_name, string &pwd_str, strin
         // 处理查询结果
         cout<<"query pwd succ:"<<user_name<<endl;
         
-        MYSQL_BIND ret_bind[2];
+        MYSQL_BIND ret_bind[2];
         char pwd[PWD_SIZE];
         char salt[SALT_SIZE];
         unsigned long length[2];

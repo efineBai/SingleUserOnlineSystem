@@ -21,29 +21,29 @@ using std::string;
 //记录全局数据
 namespace GlobalData{
     
-    // svr端返回的错误码
-    const int USER_PWD_ERROR = -10001;
-    const int USER_NOT_EXIST = -10002;
-    const int USER_LOGIN_OTHER = -10003; //用户在其他设备上进行了登录
-    const int USER_SIGNUP_ERR = -10004;
-    const int USER_LOGIN_ILEAGAL = -10005;
-    
-    
-    const int USER_LOGIN_SUCC = 10000; //用户登录成功
-    const int USER_LOGOUT_SUCC = 10001;
-    const int USER_STATUS_CHECK_SUCC = 10002;
-    const int USER_SIGNUP_SUCC = 10003; // 用户注册成功
-    const int USER_STATUS_NEED_CHECK = 10004;
-    const int USER_STATUS_TOKEN  = 10005; //将token 传递给客户端
-    
-    
-    // 客户端发起的错误码
-    const int CLIENT_USER_LOGIN = 20000;
-    const int CLIENT_USER_LOGOUT = 20001;
-    const int CLIENT_NET_CONNECT_ERR = 20002;
-    const int CLIENT_UNKNOWN_ERR = 20003;
-    const int CLIENT_GET_TOKEN = 20004; // 登录之前先获取token
-    
+//    // svr端返回的错误码
+//    const int USER_PWD_ERROR = -10001;
+//    const int USER_NOT_EXIST = -10002;
+//    const int USER_LOGIN_OTHER = -10003; //用户在其他设备上进行了登录
+//    const int USER_SIGNUP_ERR = -10004;
+//    const int USER_LOGIN_ILEAGAL = -10005;
+//
+//
+//    const int USER_LOGIN_SUCC = 10000; //用户登录成功
+//    const int USER_LOGOUT_SUCC = 10001;
+//    const int USER_STATUS_CHECK_SUCC = 10002;
+//    const int USER_SIGNUP_SUCC = 10003; // 用户注册成功
+//    const int USER_STATUS_NEED_CHECK = 10004;
+//    const int USER_STATUS_TOKEN  = 10005; //将token 传递给客户端
+//
+//
+//    // 客户端发起的错误码
+//    const int CLIENT_USER_LOGIN = 20000;
+//    const int CLIENT_USER_LOGOUT = 20001;
+//    const int CLIENT_NET_CONNECT_ERR = 20002;
+//    const int CLIENT_UNKNOWN_ERR = 20003;
+//    const int CLIENT_GET_TOKEN = 20004; // 登录之前先获取token
+//    
     
     class StreamStatus{
     public:
