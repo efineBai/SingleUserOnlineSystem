@@ -36,7 +36,7 @@ using std::endl;
  * 注册用户时，需要传递用户的密码，这时需要用服务端的publickey 进行加密
  */
 namespace UserLogin {
-    string srvaddr = "10.70.81.89:3001";
+    string srvaddr = "10.70.81.48:3001";
 int32_t UserLoginImpl::sign_up(const std::string &user_name, const std::string &pwd, const std::shared_ptr<LoginStatusCallback> &callback){
     LOGD("user signup called in cpp1 %s", pwd.c_str());
     std::shared_ptr<Channel> channel = grpc::CreateChannel(srvaddr, grpc::InsecureChannelCredentials());
@@ -61,7 +61,7 @@ int32_t UserLoginImpl::login(const std::string & user_name, const std::string & 
      LOGD("user login called in cpp1 %s", pwd.c_str());
     if(user_name.empty() || pwd.empty()) {
         if(callback != nullptr) {
-            callback->onLoginFailed(GlobalData::CLIENT_USER_LOGIN, "username or pwd is empty");
+            callback->onLoginFailed(singleuseronline::CLIENT_USER_LOGIN, "username or pwd is empty");
             cerr<<"user_name or pwd is empty";
         }
         return -1;

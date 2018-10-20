@@ -20,17 +20,17 @@ bool SingleUserOnlineStub::SignUp(const string userName, const string pwd, const
     loginInfo.set_userid(userName.c_str());
     loginInfo.set_passwordencoded(pwd.c_str());
     ResultInfo resultInfo;
-    resultInfo.set_resultcode(GlobalData::CLIENT_UNKNOWN_ERR);
+    resultInfo.set_resultcode(singleuseronline::CLIENT_UNKNOWN_ERR);
     stub_->signUp(&context, loginInfo, &resultInfo);
     LOGD("SignUp result:ret %d, msg %s", resultInfo.resultcode(), resultInfo.resultmsg().c_str());
     switch (resultInfo.resultcode()) {
-        case GlobalData::USER_LOGIN_SUCC:
+        case singleuseronline::USER_LOGIN_SUCC:
             callback->onLoginSucc();
             break;
-        case GlobalData::USER_PWD_ERROR:
+        case singleuseronline::USER_PWD_ERROR:
             callback->onSignUpFailed(resultInfo.resultcode(),resultInfo.resultmsg());
             break;
-        case GlobalData::USER_SIGNUP_SUCC:
+        case singleuseronline::USER_SIGNUP_SUCC:
             callback->onSignUpSucc();
             break;
         
@@ -52,7 +52,7 @@ bool SingleUserOnlineStub::keepAliveStream(const string userName,const  string p
     timespec.clock_type = GPR_TIMESPAN;
     context.set_deadline(timespec);
     LoginInfo loginInfo;
-    loginInfo.set_status(GlobalData::CLIENT_GET_TOKEN);
+    loginInfo.set_status(singleuseronline::CLIENT_GET_TOKEN);
     loginInfo.set_userid(userName);
     loginInfo.set_timestamp(time_stamp);
     
@@ -77,11 +77,11 @@ bool SingleUserOnlineStub::keepAliveStream(const string userName,const  string p
             string pwdParsed;
             LoginInfo clientInfo;
             switch (retInfo.status()) {
-                case GlobalData::USER_STATUS_NEED_CHECK:
+                case singleuseronline::USER_STATUS_NEED_CHECK:
                     // svr发起对客户端的校验
                     if(!stream->Write(loginInfo)){
                         //broken stream,
-                        callback->onLoginFailed(GlobalData::CLIENT_NET_CONNECT_ERR, "please check network");
+                        callback->onLoginFailed(singleuseronline::CLIENT_NET_CONNECT_ERR, "please check network");
                         return false;
                     } else{
                         // send login info succ
@@ -89,33 +89,33 @@ bool SingleUserOnlineStub::keepAliveStream(const string userName,const  string p
                     }
                     break;
 
-                case GlobalData::USER_NOT_EXIST:
+                case singleuseronline::USER_NOT_EXIST:
                     stream->WritesDone();
                     stream->Finish();
                     callback->onLoginFailed(retInfo.status(), "用户不存在" );
                     return false;
                     break;
-                case GlobalData::USER_PWD_ERROR:
+                case singleuseronline::USER_PWD_ERROR:
                     stream->WritesDone();
                        stream->Finish();
                     callback->onLoginFailed(retInfo.status(), "账号或密码错误");
                     return false;
                     break;
-                case GlobalData::USER_STATUS_CHECK_SUCC:
+                case singleuseronline::USER_STATUS_CHECK_SUCC:
                     // do nothin ; 用户的心跳检查成功
                     break;
-                case GlobalData::USER_LOGIN_SUCC:
+                case singleuseronline::USER_LOGIN_SUCC:
                     callback->onLoginSucc();
                    
                     break;
-                case GlobalData::USER_STATUS_TOKEN:
+                case singleuseronline::USER_STATUS_TOKEN:
                     retInfo.passwordencoded();
                     char hash[64];
                     bcrypt_hashpw(pwd.c_str(), retInfo.passwordencoded().c_str(), hash);
                     pwdParsed = CommTools::Sha256(string(hash) + retInfo.deviceid());
                     clientInfo.set_userid(userName);
                     clientInfo.set_passwordencoded(pwdParsed);
-                    clientInfo.set_status(GlobalData::CLIENT_USER_LOGIN);
+                    clientInfo.set_status(singleuseronline::CLIENT_USER_LOGIN);
                     stream->Write(clientInfo);
                     //                    string token2 = retInfo.deviceid();
 //                    string hash = CommTools::generateDbPwd(pwd, salt);
@@ -123,7 +123,7 @@ bool SingleUserOnlineStub::keepAliveStream(const string userName,const  string p
                     
                     break;
                 default:
-                    callback->onLoginOut(GlobalData::CLIENT_UNKNOWN_ERR, "connection broken");
+                    callback->onLoginOut(singleuseronline::CLIENT_UNKNOWN_ERR, "connection broken");
                     cout<< "user has been kicked out" << endl;
                     break;
             }

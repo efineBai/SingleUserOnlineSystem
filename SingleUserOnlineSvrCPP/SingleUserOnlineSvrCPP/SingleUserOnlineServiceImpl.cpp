@@ -94,7 +94,7 @@ class SingleUserOnlineServiceImpl final : public singleuseronline::SingleUserOnl
                 if(!SingleUserDBOperation::getInstance()->queryUserPwd(clientLoginInfo.userid(), dbPwd, salt)){
                     //用户存在，开始校验密码的过程
                     cout<< "query user succ"<< clientLoginInfo.userid()<<endl;
-                    if(GlobalData::tryLoginUser->find(clientLoginInfo.userid()) != GlobalData::tryLoginUser->end()){0
+                    if(GlobalData::tryLoginUser->find(clientLoginInfo.userid()) != GlobalData::tryLoginUser->end()){
                         // 如果当前用户之前已经有正在登陆的连接，情况比较多，暂时先丢弃当前请求，等待10s,如果该用户还在tryloginUser中，则将该记录直接删除，防止之前登陆中断后，无法再次登陆
                         //先丢弃当前请求
                         singleuseronline::LoginInfo svrLoginInfo;
